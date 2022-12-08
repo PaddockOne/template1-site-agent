@@ -285,6 +285,40 @@
     <article class="our_vehicle">
       <h2>Nos véhicules</h2>
       <CarouselVehicle />
+      <section class="highlight">
+        <div class="highlight__description">
+          <span class="badge">électrique</span>
+          <h2 class="name">{{ hilightVehicle.name }}</h2>
+          <h4 class="price">prix à partir de {{ hilightVehicle.price }} €</h4>
+          <span v-if="hilightVehicle.bonus" class="bonus"
+            >bonus éco de {{ hilightVehicle.bonus }} € non déduit</span
+          >
+          <span class="energy-grade" :data="hilightVehicle.energyGrade"
+            >classe énergétique</span
+          >
+        </div>
+        <picture
+          class="LazyPictureElement LazyPictureElement_loaded WebrenderPictureElement RangeModelCard__image is-ratio-forced"
+          ><source
+            srcset="
+              https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_XLARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU,
+              https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_XLARGE_DENSITY2/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU 2x
+            "
+            media="(min-width: 1024px)" />
+          <source
+            srcset="
+              https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU,
+              https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY2/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU 2x
+            " />
+          <img
+            src="https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU"
+            alt="MEGANE E-TECH 100% ELECTRIC"
+            class="PictureElement__imgDefault" /><noscript
+            ><img
+              src="https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU"
+              alt="MEGANE E-TECH 100% ELECTRIC" /></noscript
+        ></picture>
+      </section>
     </article>
   </main>
 </template>
@@ -298,7 +332,23 @@ import CarouselVehicle from "@/components/Carousel.component.vue";
     CarouselVehicle,
   },
 })
-export default class HomeView extends Vue {}
+export default class HomeView extends Vue {
+  hilightVehicle: {
+    id: number;
+    name: string;
+    img: string;
+    price: number;
+    bonus?: number;
+    energyGrade: string;
+  } = {
+    id: 6,
+    name: "MEGANE E-TECH 100% ELECTRIC",
+    img: "https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU",
+    price: 37200,
+    bonus: 6000,
+    energyGrade: "A",
+  };
+}
 </script>
 
 <style lang="scss">
@@ -638,6 +688,92 @@ export default class HomeView extends Vue {}
     text-align: center;
     @media screen and (max-width: 600px) {
       font-size: 1.75em;
+    }
+  }
+  .highlight {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em 5em;
+    width: 55%;
+    background: #f2f2f2;
+    margin-top: 2em;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      padding: 2em 1em;
+      flex-direction: column;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1200px) {
+      width: 100%;
+      padding: 2em 1em;
+      flex-direction: row;
+    }
+    @media screen and (min-width: 1200px) and (max-width: 1600px) {
+      width: 75%;
+      padding: 2em 1em;
+      flex-direction: row;
+    }
+    &__description {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 1em;
+      .badge {
+        padding: 0.1em 0.5em;
+        border: 1px solid #00abe5;
+        border-radius: 5px;
+        font-family: "Dosis", sans-serif;
+        color: #00abe5;
+        font-weight: 600;
+      }
+      .name {
+        text-align: left !important;
+      }
+      .bonus {
+        font-family: "Dosis", sans-serif;
+        color: #fff;
+        font-size: 1em;
+        background: #72c293;
+        padding: 0.1em 0.25em;
+        border-radius: 5px;
+      }
+      .energy-grade {
+        font-family: "Dosis", sans-serif;
+        color: #000;
+        font-size: 1em;
+        font-weight: 800;
+        padding: 0.1em 0.25em;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5em;
+        &::after {
+          content: attr(data);
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+          padding: 0.1em 0.25em;
+          background: #289548;
+          color: #fff;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+        }
+      }
+      h4 {
+        font-family: "Oswald", sans-serif;
+        color: #162b40;
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin: 0;
+        text-align: left;
+        @media screen and (max-width: 600px) {
+          font-size: 1.25em;
+        }
+      }
     }
   }
 }
