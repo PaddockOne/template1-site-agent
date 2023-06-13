@@ -33,8 +33,11 @@
       <ul @click="toggleNavMenu()" :class="{ show: toggleNav }">
         <li><router-link to="/">Accueil</router-link></li>
         <li><router-link to="/about">A propos</router-link></li>
-        <li><router-link to="/contact">Tarifs</router-link></li>
-        <li><button class="btn-primary">Contactez-nous</button></li>
+        <li>
+          <router-link to="/contact">
+            <button class="btn-primary">Contactez-nous</button>
+          </router-link>
+        </li>
       </ul>
     </nav>
   </header>
@@ -266,6 +269,9 @@ header {
         font-weight: 400;
         position: relative;
         cursor: pointer;
+        a {
+          text-decoration: none;
+        }
         &:not(:last-child) {
           &::before {
             content: "";
