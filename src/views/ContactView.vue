@@ -97,8 +97,10 @@
         <input type="text" name="name" id="name" />
         <label for="mail">E-mail</label>
         <input type="mail" name="mail" id="mail" />
-        <label for="mail">E-mail</label>
-        <input type="mail" name="mail" id="mail" />
+        <label for="subject">Objet</label>
+        <input type="text" name="subject" id="subject" />
+        <label for="message">Objet</label>
+        <textarea name="message" id="message"></textarea>
       </form>
     </article>
   </main>
@@ -131,17 +133,11 @@ export default class HomeView extends Vue {}
     font-family: "Oswald", sans-serif;
     color: #162b40;
   }
-  p {
-    font-size: 1em;
-    font-family: "Open Sans", sans-serif;
-    color: #162b40;
-    align-self: flex-start;
-    width: 50%;
-    position: relative;
-    left: 15%;
-    @media screen and (max-width: 1200px) {
-      width: 80%;
-    }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
   }
 }
 </style>
