@@ -92,7 +92,7 @@
     </article>
     <article class="content">
       <h1>Contacter nous</h1>
-      <form>
+      <form id="form">
         <label for="name">Nom</label>
         <input type="text" name="name" id="name" />
         <label for="mail">E-mail</label>
@@ -101,6 +101,7 @@
         <input type="text" name="subject" id="subject" />
         <label for="message">Objet</label>
         <textarea name="message" id="message"></textarea>
+        <button>Envoyer</button>
       </form>
     </article>
   </main>
@@ -114,6 +115,9 @@ export default class HomeView extends Vue {}
 </script>
 
 <style lang="scss" scoped>
+button {
+  cursor: pointer;
+}
 .hero::before {
   display: none;
 }
@@ -134,10 +138,42 @@ export default class HomeView extends Vue {}
     color: #162b40;
   }
   form {
+    font-family: "Oswald", sans-serif;
     display: flex;
     flex-direction: column;
     gap: 1em;
-    width: 100%;
+    width: 40%;
+    border: 1px solid #162b40;
+    padding: 2em;
+    border-radius: 0.33em;
+    height: 500px;
+    input,
+    textarea {
+      height: 15%;
+      border: none;
+      border-bottom: 1px solid #162b40;
+      // border: 1px solid #fcf143;
+      color: transparent;
+    }
+    input:focus,
+    textarea:focus {
+      outline-color: #162b40;
+    }
+    button {
+      width: 40%;
+      height: 15%;
+      background-color: #fcf143;
+      color: #162b40;
+      border: none;
+      border-radius: 0.33em;
+      transition: all 0.15s ease-in-out;
+    }
+    button:hover {
+      background-color: #162b40;
+      color: #fcf143;
+      border: none;
+      border-bottom: 1px solid #162b40;
+    }
   }
 }
 </style>

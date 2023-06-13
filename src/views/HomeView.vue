@@ -80,7 +80,7 @@
         />
         <img
           src="https://cdn.group.renault.com/ren/fr/home/austral/austral_carrousel_mobile_2560x4551.jpg.ximg.xsmall.jpg/0c1cc21218.jpg"
-          alt="Nouveau SUV Austral E-Tech full hybrid"
+          :alt="home.hero.picture.alt1"
           class="PictureElement__imgDefault"
           fetchpriority="high"
         /><noscript
@@ -324,6 +324,7 @@
 </template>
 
 <script lang="ts">
+import home from "../variables/home.config";
 import { Options, Vue } from "vue-class-component";
 import CarouselVehicle from "@/components/Carousel.component.vue";
 
@@ -331,8 +332,14 @@ import CarouselVehicle from "@/components/Carousel.component.vue";
   components: {
     CarouselVehicle,
   },
+  data() {
+    return {
+      home: home,
+    };
+  },
 })
 export default class HomeView extends Vue {
+  home = home;
   hilightVehicle: {
     id: number;
     name: string;
