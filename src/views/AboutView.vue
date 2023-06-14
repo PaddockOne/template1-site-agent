@@ -92,8 +92,8 @@
     </article>
     <article class="content">
       <h1>{{ about.content.h1 }}</h1>
-      <p>{{ about.content.p_1 }}</p>
-      <p>{{ about.content.p_2 }}</p>
+      <p id="content_p1">{{ about.content.p_1 }}</p>
+      <p id="content_p2">{{ about.content.p_2 }}</p>
     </article>
   </main>
 </template>
@@ -101,12 +101,42 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import about from "../variables/about.config";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 @Options({
   data() {
     return {
       about: about,
     };
+  },
+  mounted() {
+    gsap.from(".hero", {
+      scrollTrigger: ".hero",
+      opacity: 0,
+      x: 800,
+      duration: 0.5,
+    });
+    gsap.from("h1", {
+      scrollTrigger: "h1",
+      opacity: 0,
+      duration: 0.5,
+    });
+    gsap.from("#content_p1", {
+      scrollTrigger: "#content_p1",
+      opacity: 0,
+      duration: 0.5,
+      ease: "back",
+      x: 500,
+    });
+    gsap.from("#content_p2", {
+      scrollTrigger: "#content_p2",
+      opacity: 0,
+      duration: 0.5,
+      ease: "back",
+      x: -500,
+    });
   },
 })
 export default class AboutView extends Vue {

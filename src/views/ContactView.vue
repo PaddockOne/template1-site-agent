@@ -80,26 +80,40 @@
         />
         <img
           src="https://cdn.group.renault.com/ren/fr/home/austral/austral_carrousel_mobile_2560x4551.jpg.ximg.xsmall.jpg/0c1cc21218.jpg"
-          alt="Nouveau SUV Austral E-Tech full hybrid"
+          :alt="contact.hero.alt"
           class="PictureElement__imgDefault"
           fetchpriority="high"
         /><noscript
           ><img
             src="https://cdn.group.renault.com/ren/fr/home/austral/austral_carrousel_mobile_2560x4551.jpg.ximg.xsmall.jpg/0c1cc21218.jpg"
-            alt="Nouveau SUV Austral E-Tech full hybrid"
+            :alt="contact.hero.alt"
         /></noscript>
       </picture>
     </article>
     <article class="content">
-      <h1>Contacter nous</h1>
+      <h1>{{ contact.content.h1 }}</h1>
       <form id="form">
         <label for="name">Nom</label>
         <input type="text" name="name" id="name" />
         <label for="mail">E-mail</label>
         <input type="mail" name="mail" id="mail" />
-        <label for="subject">Objet</label>
-        <input type="text" name="subject" id="subject" />
-        <label for="message">Objet</label>
+        <label for="demande">--Type de demande--</label>
+        <select v-model="selectedOption" name="demande" id="demande">
+          <option value=""></option>
+          <option value="neuf">{{ contact.content.form.option1 }}</option>
+          <option value="occasion">{{ contact.content.form.option2 }}</option>
+          <option value="garage">{{ contact.content.form.option3 }}</option>
+          <option value="autre">{{ contact.content.form.option4 }}</option>
+        </select>
+        <label v-if="selectedOption === 'autre'" for="subject">Objet</label>
+        <input
+          v-if="selectedOption === 'autre'"
+          type="text"
+          name="subject"
+          id="subject"
+          placeholder="Autres: "
+        />
+        <label for="message">Message</label>
         <textarea name="message" id="message"></textarea>
         <button>Envoyer</button>
       </form>
@@ -109,14 +123,33 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import contact from "../variables/contact.config";
 
-@Options({})
-export default class HomeView extends Vue {}
+@Options({
+  data() {
+    return {
+      selectedOption: "",
+      contact: contact,
+    };
+  },
+})
+export default class ContactView extends Vue {
+  contact = contact;
+  selectedOption!: string;
+}
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/layouts/color";
+
+main {
+  font-family: "Oswald", sans-serif;
+  max-width: 100%;
+  overflow-x: hidden;
+}
 button {
   cursor: pointer;
+  font-weight: bold;
 }
 .hero::before {
   display: none;
@@ -135,44 +168,41 @@ button {
   h1 {
     font-size: 3em;
     font-family: "Oswald", sans-serif;
-    color: #162b40;
+    color: $secondary;
   }
   form {
-    font-family: "Oswald", sans-serif;
     display: flex;
     flex-direction: column;
     gap: 1em;
     width: 40%;
-    border: 1px solid #162b40;
     padding: 2em;
-    border-radius: 0.33em;
     height: 500px;
     input,
-    textarea {
+    textarea,
+    select {
       height: 15%;
       border: none;
-      border-bottom: 1px solid #162b40;
-      // border: 1px solid #fcf143;
-      color: transparent;
-    }
-    input:focus,
-    textarea:focus {
-      outline-color: #162b40;
+      border-bottom: 1px solid $secondary;
+      background-color: transparent;
+      &:focus {
+        outline: none;
+        border-bottom-color: $primary;
+      }
     }
     button {
       width: 40%;
       height: 15%;
-      background-color: #fcf143;
-      color: #162b40;
+      background-color: $primary;
+      color: $secondary;
       border: none;
       border-radius: 0.33em;
       transition: all 0.15s ease-in-out;
     }
     button:hover {
-      background-color: #162b40;
-      color: #fcf143;
+      background-color: $secondary;
+      color: $primary;
       border: none;
-      border-bottom: 1px solid #162b40;
+      border-bottom: 1px solid $secondary;
     }
   }
 }
