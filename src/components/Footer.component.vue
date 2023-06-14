@@ -1,8 +1,8 @@
 <template>
   <footer>
     <section class="contact">
-      <h2>Prenez rendez-vous maintenant</h2>
-      <a href="tel:0492503091" target="_blank"
+      <h2 id="contact_h2">Prenez rendez-vous maintenant</h2>
+      <a id="contact_a" href="tel:0492503091" target="_blank"
         >Appellez nous au: 04 92 50 30 91</a
       >
     </section>
@@ -23,6 +23,7 @@
         <span class="copyright">© 2022 TeamDevSyn</span>
       </span>
       <iframe
+        class="svg"
         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11369.175398940632!2d6.1811782!3d44.5705559!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x182e9ba5197ef442!2sBrenier%20Automobiles%20-%20Renault%20Dacia%20La%20B%C3%A2tie%20neuve!5e0!3m2!1sfr!2sfr!4v1668079046323!5m2!1sfr!2sfr"
         width="800"
         height="300"
@@ -36,16 +37,48 @@
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 @Options({
   name: "FooterComponent",
+  mounted() {
+    gsap.from(".general", {
+      scrollTrigger: "footer",
+      duration: 1,
+      x: -300,
+      y: 300,
+      opacity: 0,
+    });
+    gsap.from(".svg", {
+      scrollTrigger: "footer",
+      duration: 1,
+      x: 300,
+      y: 300,
+      opacity: 0,
+    });
+    gsap.from("#contact_h2", {
+      scrollTrigger: "footer",
+      duration: 1,
+      x: -300,
+      opacity: 0,
+    });
+    gsap.from("#contact_a", {
+      scrollTrigger: "footer",
+      duration: 1,
+      x: 300,
+      opacity: 0,
+    });
+  },
 })
 export default class Footer extends Vue {}
 </script>
 
 <style lang="scss" scoped>
 footer {
-  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   position: relative;
   bottom: 0;
   display: flex;

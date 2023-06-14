@@ -127,7 +127,7 @@
           width="370"
           height="250"
           src="https://ld-wp.template-help.com/wordpress_prod-18890/v2/wp-content/uploads/2018/06/fuelcon-3.jpg"
-          class="attachment-large size-large"
+          class="attachment-large size-large why-us__img1"
           alt=""
           srcset="
             https://ld-wp.template-help.com/wordpress_prod-18890/v2/wp-content/uploads/2018/06/fuelcon-3.jpg         370w,
@@ -139,7 +139,7 @@
           width="420"
           height="300"
           src="https://ld-wp.template-help.com/wordpress_prod-18890/v2/wp-content/uploads/2018/06/fuelcon-4.png"
-          class="attachment-large size-large"
+          class="attachment-large size-large why-us__img2"
           alt=""
           srcset="
             https://ld-wp.template-help.com/wordpress_prod-18890/v2/wp-content/uploads/2018/06/fuelcon-4.png         420w,
@@ -154,7 +154,7 @@
           {{ home.why_us.text.h2 }}
         </h2>
         <section class="why-us__text--list">
-          <span class="why-us__text--list__item"
+          <span class="why-us__text--list__item left_top"
             ><span class="icon"></span>
             <span class="text">
               <h5>
@@ -165,7 +165,7 @@
               </span>
             </span>
           </span>
-          <span class="why-us__text--list__item"
+          <span class="why-us__text--list__item right_top"
             ><span class="icon"></span>
             <span class="text">
               <h5>
@@ -176,7 +176,7 @@
               </span>
             </span>
           </span>
-          <span class="why-us__text--list__item"
+          <span class="why-us__text--list__item left_bottom"
             ><span class="icon"></span>
             <span class="text">
               <h5>
@@ -187,7 +187,7 @@
               </span>
             </span>
           </span>
-          <span class="why-us__text--list__item"
+          <span class="why-us__text--list__item right_bottom"
             ><span class="icon"></span>
             <span class="text">
               <h5>
@@ -210,7 +210,7 @@
           width="370"
           height="360"
           src="https://ld-wp.template-help.com/wordpress_prod-18890/v2/wp-content/uploads/2018/06/fuelcon_banner_1.jpg"
-          class="attachment-large size-large"
+          class="attachment-large size-large special-offer-img1"
           alt=""
           srcset="
             https://ld-wp.template-help.com/wordpress_prod-18890/v2/wp-content/uploads/2018/06/fuelcon_banner_1.jpg         370w,
@@ -222,7 +222,7 @@
           width="370"
           height="360"
           src="https://ld-wp.template-help.com/wordpress_prod-18890/v2/wp-content/uploads/2018/06/fuelcon_banner_2.jpg"
-          class="attachment-large size-large"
+          class="attachment-large size-large special-offer-img2"
           alt=""
           srcset="
             https://ld-wp.template-help.com/wordpress_prod-18890/v2/wp-content/uploads/2018/06/fuelcon_banner_2.jpg         370w,
@@ -234,7 +234,7 @@
           width="370"
           height="360"
           src="https://ld-wp.template-help.com/wordpress_prod-18890/v2/wp-content/uploads/2018/06/fuelcon_banner_3.jpg"
-          class="attachment-large size-large"
+          class="attachment-large size-large special-offer-img3"
           alt=""
           srcset="
             https://ld-wp.template-help.com/wordpress_prod-18890/v2/wp-content/uploads/2018/06/fuelcon_banner_3.jpg         370w,
@@ -273,7 +273,7 @@
         <img
           src="https://cdn.group.renault.com/ren/master/renault-new-cars/product-plans/clio/clio-bja-ph1-hev/hero-zone/2560x1200-desktop/renault-clio5-hev-ph1-hero-zone-desktop-001.jpg.ximg.xsmall.jpg/9bd9376391.jpg"
           :alt="home.hero_model.alt"
-          class="PictureElement__imgDefault"
+          class="PictureElement__imgDefault heroModel_img"
           fetchpriority="high" /><noscript
           ><img
             src="https://cdn.group.renault.com/ren/master/renault-new-cars/product-plans/clio/clio-bja-ph1-hev/hero-zone/2560x1200-desktop/renault-clio5-hev-ph1-hero-zone-desktop-001.jpg.ximg.xsmall.jpg/9bd9376391.jpg"
@@ -342,6 +342,10 @@
 import home from "../variables/home.config";
 import { Options, Vue } from "vue-class-component";
 import CarouselVehicle from "@/components/Carousel.component.vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 @Options({
   components: {
     CarouselVehicle,
@@ -350,6 +354,107 @@ import CarouselVehicle from "@/components/Carousel.component.vue";
     return {
       home: home,
     };
+  },
+  mounted() {
+    gsap.from(".hero", {
+      scrollTrigger: ".hero",
+      opacity: 0,
+      x: 800,
+      duration: 0.5,
+    });
+    gsap.from(".hero__modal", {
+      scrollTrigger: ".hero__modal",
+      opacity: 0,
+      x: -1200,
+      duration: 0.5,
+    });
+    gsap.from(".why-us__img1", {
+      scrollTrigger: ".why-us__img2",
+      opacity: 0,
+      duration: 0.5,
+      x: -500,
+      ease: "bounce",
+    });
+    gsap.from(".why-us__img2", {
+      scrollTrigger: ".why-us__img2",
+      opacity: 0,
+      duration: 1,
+      x: -500,
+      ease: "bounce",
+    });
+    gsap.from(".left_top", {
+      scrollTrigger: ".why-us__img2",
+      opacity: 0,
+      x: 1200,
+      duration: 0.5,
+      ease: "back",
+    });
+    gsap.from(".right_top", {
+      scrollTrigger: ".why-us__img2",
+      opacity: 0,
+      x: 1200,
+      duration: 0.75,
+      ease: "back",
+    });
+    gsap.from(".left_bottom", {
+      scrollTrigger: ".why-us__img2",
+      opacity: 0,
+      x: 1200,
+      duration: 1,
+      ease: "back",
+    });
+    gsap.from(".right_bottom", {
+      scrollTrigger: ".why-us__img2",
+      opacity: 0,
+      x: 1200,
+      duration: 1.25,
+      ease: "back",
+    });
+    gsap.from(".why-us__text--title", {
+      scrollTrigger: ".why-us__img2",
+      opacity: 0,
+      x: 1200,
+      duration: 1.25,
+      ease: "back",
+    });
+    gsap.from(".special-offer-img1", {
+      scrollTrigger: ".heroModel_img",
+      opacity: 0,
+      y: -500,
+      duration: 0.5,
+      ease: "slow",
+    });
+    gsap.from(".special-offer-img2", {
+      scrollTrigger: ".heroModel_img",
+      opacity: 0,
+      y: -500,
+      duration: 0.75,
+      ease: "slow",
+    });
+    gsap.from(".special-offer-img3", {
+      scrollTrigger: ".heroModel_img",
+      opacity: 0,
+      y: -500,
+      duration: 1,
+      ease: "slow",
+    });
+    gsap.from(".heroModel_img", {
+      scrollTrigger: ".heroModel_img",
+      opacity: 0,
+      duration: 1.5,
+    });
+    gsap.from(".our_vehicle", {
+      scrollTrigger: ".our_vehicle",
+      opacity: 0,
+      duration: 1.5,
+    });
+    gsap.from(".highlight", {
+      scrollTrigger: ".our_vehicle",
+      y: 500,
+      x: 500,
+      opacity: 0,
+      duration: 1.5,
+    });
   },
 })
 export default class HomeView extends Vue {
@@ -373,6 +478,10 @@ export default class HomeView extends Vue {
 </script>
 
 <style lang="scss">
+main {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 .hero {
   width: 100%;
   height: 600px;

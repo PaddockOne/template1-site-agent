@@ -44,8 +44,19 @@
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 @Options({
   name: "Header",
+  mounted() {
+    gsap.from("header", {
+      scrollTrigger: "header",
+      opacity: 0,
+      y: -100,
+      duration: 1,
+    });
+  },
 })
 export default class Header extends Vue {
   toggleNav = false;
