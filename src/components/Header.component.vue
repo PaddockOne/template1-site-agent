@@ -31,12 +31,27 @@
         ><div class="bar"></div
       ></span>
       <ul @click="toggleNavMenu()" :class="{ show: toggleNav }">
-        <li><router-link to="/">Accueil</router-link></li>
-        <li><router-link to="/about">A propos</router-link></li>
         <li>
-          <router-link to="/contact">
-            <button class="btn-primary">Contactez-nous</button>
-          </router-link>
+          <RouterLink to="/" :href="'/'">
+            <span style="display: none">Accueil</span>
+            <span style="display: inline">Accueil</span>
+          </RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/about" :href="'/about'">
+            <span style="display: none">A propos</span>
+            <span style="display: inline">A propos</span>
+          </RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/contact" :href="'/contact'">
+            <button class="btn-primary" style="display: none">
+              Contactez-nous
+            </button>
+            <button class="btn-primary" style="display: inline">
+              Contactez-nous
+            </button>
+          </RouterLink>
         </li>
       </ul>
     </nav>

@@ -146,6 +146,9 @@ export default class AboutView extends Vue {
 
 <style lang="scss" scoped>
 @import "../assets/layouts/color";
+main::-webkit-scrollbar {
+  display: none;
+}
 .hero::before {
   display: none;
 }

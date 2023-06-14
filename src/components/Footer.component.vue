@@ -1,24 +1,24 @@
 <template>
   <footer>
     <section class="contact">
-      <h2 id="contact_h2">Prenez rendez-vous maintenant</h2>
+      <h2 id="contact_h2">{{ footer.contact.h2 }}</h2>
       <a id="contact_a" href="tel:0492503091" target="_blank"
-        >Appellez nous au: 04 92 50 30 91</a
+        >Appellez nous au: {{ footer.contact.a }}</a
       >
     </section>
     <section class="footer">
       <span class="general">
         <section class="brand">
-          <h1 id="brand___first-part">Garage</h1>
-          <h1 id="brand___second-part">Brenier</h1>
+          <h1 id="brand___first-part">{{ footer.brand.h1_1 }}</h1>
+          <h1 id="brand___second-part">{{ footer.brand.h1_2 }}</h1>
         </section>
         <a href="tel:0492503091" target="_blank"
-          >Appellez nous au: 04 92 50 30 91</a
+          >Appellez nous au: {{ footer.contact.a }}</a
         >
         <span class="hours"
-          ><h5>Horaires</h5>
-          <p>lun-jeu: 7:00-12:30, 13:30-18:30</p>
-          <p>sam: 09:00-12:00</p></span
+          ><h5>{{ footer.hours.h5 }}</h5>
+          <p>{{ footer.hours.p_1 }}</p>
+          <p>{{ footer.hours.p_2 }}</p></span
         >
         <span class="copyright">© 2022 TeamDevSyn</span>
       </span>
@@ -36,6 +36,7 @@
   </footer>
 </template>
 <script lang="ts">
+import footer from "../variables/footer.config";
 import { Options, Vue } from "vue-class-component";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -72,11 +73,16 @@ gsap.registerPlugin(ScrollTrigger);
     });
   },
 })
-export default class Footer extends Vue {}
+export default class Footer extends Vue {
+  footer = footer;
+}
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/layouts/color";
+footer::-webkit-scrollbar {
+  display: none;
+}
 
 footer {
   max-width: 100%;

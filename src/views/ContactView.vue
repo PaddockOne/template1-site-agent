@@ -173,6 +173,9 @@ export default class ContactView extends Vue {
 
 <style lang="scss" scoped>
 @import "../assets/layouts/color";
+main::-webkit-scrollbar {
+  display: none;
+}
 
 main {
   font-family: "Oswald", sans-serif;

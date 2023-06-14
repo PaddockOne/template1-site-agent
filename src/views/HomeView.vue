@@ -479,6 +479,9 @@ export default class HomeView extends Vue {
 
 <style lang="scss">
 @import "../assets/layouts/color";
+main::-webkit-scrollbar {
+  display: none;
+}
 
 main {
   max-width: 100%;
