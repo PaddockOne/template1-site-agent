@@ -80,72 +80,42 @@
         />
         <img
           src="https://cdn.group.renault.com/ren/fr/home/austral/austral_carrousel_mobile_2560x4551.jpg.ximg.xsmall.jpg/0c1cc21218.jpg"
-          alt="Nouveau SUV Austral E-Tech full hybrid"
+          :alt="about.hero.alt"
           class="PictureElement__imgDefault"
           fetchpriority="high"
         /><noscript
           ><img
             src="https://cdn.group.renault.com/ren/fr/home/austral/austral_carrousel_mobile_2560x4551.jpg.ximg.xsmall.jpg/0c1cc21218.jpg"
-            alt="Nouveau SUV Austral E-Tech full hybrid"
+            :alt="about.hero.alt"
         /></noscript>
       </picture>
     </article>
     <article class="content">
-      <h1>A propos</h1>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt,
-        vero! Enim qui, sapiente, atque recusandae cumque inventore vero non
-        assumenda ipsum provident modi fuga eveniet, adipisci laudantium! Neque,
-        nihil ipsam! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-        Incidunt, vero! Enim qui, sapiente, atque recusandae cumque inventore
-        vero non assumenda ipsum provident modi fuga eveniet, adipisci
-        laudantium! Neque, nihil ipsam! Lorem ipsum dolor sit, amet consectetur
-        adipisicing elit. Incidunt, vero! Enim qui, sapiente, atque recusandae
-        cumque inventore vero non assumenda ipsum provident modi fuga eveniet,
-        adipisci laudantium! Neque, nihil ipsam! Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Incidunt, vero! Enim qui, sapiente, atque
-        recusandae cumque inventore vero non assumenda ipsum provident modi fuga
-        eveniet, adipisci laudantium! Neque, nihil ipsam! Lorem ipsum dolor sit,
-        amet consectetur adipisicing elit. Incidunt, vero! Enim qui, sapiente,
-        atque recusandae cumque inventore vero non assumenda ipsum provident
-        modi fuga eveniet, adipisci laudantium! Neque, nihil ipsam! Lorem ipsum
-        dolor sit, amet consectetur adipisicing elit. Incidunt, vero! Enim qui,
-        sapiente, atque recusandae cumque inventore vero non assumenda ipsum
-        provident modi fuga eveniet, adipisci laudantium! Neque, nihil ipsam!
-      </p>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt,
-        vero! Enim qui, sapiente, atque recusandae cumque inventore vero non
-        assumenda ipsum provident modi fuga eveniet, adipisci laudantium! Neque,
-        nihil ipsam! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-        Incidunt, vero! Enim qui, sapiente, atque recusandae cumque inventore
-        vero non assumenda ipsum provident modi fuga eveniet, adipisci
-        laudantium! Neque, nihil ipsam! Lorem ipsum dolor sit, amet consectetur
-        adipisicing elit. Incidunt, vero! Enim qui, sapiente, atque recusandae
-        cumque inventore vero non assumenda ipsum provident modi fuga eveniet,
-        adipisci laudantium! Neque, nihil ipsam! Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Incidunt, vero! Enim qui, sapiente, atque
-        recusandae cumque inventore vero non assumenda ipsum provident modi fuga
-        eveniet, adipisci laudantium! Neque, nihil ipsam! Lorem ipsum dolor sit,
-        amet consectetur adipisicing elit. Incidunt, vero! Enim qui, sapiente,
-        atque recusandae cumque inventore vero non assumenda ipsum provident
-        modi fuga eveniet, adipisci laudantium! Neque, nihil ipsam! Lorem ipsum
-        dolor sit, amet consectetur adipisicing elit. Incidunt, vero! Enim qui,
-        sapiente, atque recusandae cumque inventore vero non assumenda ipsum
-        provident modi fuga eveniet, adipisci laudantium! Neque, nihil ipsam!
-      </p>
+      <h1>{{ about.content.h1 }}</h1>
+      <p>{{ about.content.p_1 }}</p>
+      <p>{{ about.content.p_2 }}</p>
     </article>
   </main>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import about from "../variables/about.config";
 
-@Options({})
-export default class HomeView extends Vue {}
+@Options({
+  data() {
+    return {
+      about: about,
+    };
+  },
+})
+export default class AboutView extends Vue {
+  about = about;
+}
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/layouts/color";
 .hero::before {
   display: none;
 }
@@ -163,12 +133,12 @@ export default class HomeView extends Vue {}
   h1 {
     font-size: 3em;
     font-family: "Oswald", sans-serif;
-    color: #162b40;
+    color: $secondary;
   }
   p {
     font-size: 1em;
     font-family: "Open Sans", sans-serif;
-    color: #162b40;
+    color: $secondary;
     align-self: flex-start;
     width: 50%;
     position: relative;

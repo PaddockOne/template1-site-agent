@@ -19,6 +19,7 @@ import FooterComponent from "@/components/Footer.component.vue";
 export default class App extends Vue {}
 </script>
 <style lang="scss">
+@import "../src/assets/layouts/color";
 @import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Oswald:wght@200;300;400;500;600;700&display=swap");
 .btn-primary {
   all: unset;
@@ -26,15 +27,15 @@ export default class App extends Vue {}
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fcf143;
-  color: #162b40;
+  background: $primary;
+  color: $secondary;
   font-weight: 600;
   border-radius: 0.33em;
   transition: all 0.15s ease-in-out;
   cursor: pointer;
   &:hover {
-    background: #162b40;
-    color: #fcf143;
+    background: $secondary;
+    color: $primary;
   }
 }
 main {
