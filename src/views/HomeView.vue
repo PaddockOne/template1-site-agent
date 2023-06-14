@@ -90,14 +90,12 @@
         /></noscript>
       </picture>
       <span class="hero__text">
-        <h3 class="hero__text--first">Un service de</h3>
+        <h3 class="hero__text--first">{{ home.hero.hero__text.h3 }}</h3>
         <span class="hero__text--second">
-          <h1>Réparation et</h1>
-          <h1>Entretien Automobile</h1>
+          <h1>{{ home.hero.hero__text.h1_1 }}</h1>
+          <h1>{{ home.hero.hero__text.h1_2 }}</h1>
         </span>
-        <span class="hero__text--third"
-          >UNE AIDE PROFESSIONNEL ET UN SERVICE DE REPRATION DURABLE</span
-        >
+        <span class="hero__text--third">{{ home.hero.hero__text.span }}</span>
       </span>
       <section class="hero__modal">
         <img
@@ -111,15 +109,16 @@
         />
         <span class="hero__modal__text">
           <section>
-            <h3 class="hero__modal__text--italic">Dépot</h3>
-            <h3 class="hero__modal__text--bold">Après fermeture</h3>
+            <h3 class="hero__modal__text--italic">
+              {{ home.hero.hero__modal__text.h3_italic }}
+            </h3>
+            <h3 class="hero__modal__text--bold">
+              {{ home.hero.hero__modal__text.h3_bold }}
+            </h3>
           </section>
-          <span
-            >Nous savons que vous avez une vie bien remplie, c'est pourquoi nous
-            laissons nos client déposer leurs véhicule 24/7.</span
-          >
+          <span>{{ home.hero.hero__modal__text.span }}</span>
         </span>
-        <button class="btn-primary">Prenez rendez-vous</button>
+        <button class="btn-primary">{{ home.hero.button }}</button>
       </section>
     </article>
     <article class="why-us">
@@ -151,53 +150,61 @@
         />
       </section>
       <section class="why-us__text">
-        <h2 class="why-us__text--title">Pourquoi nous choisir ?</h2>
+        <h2 class="why-us__text--title">
+          {{ home.why_us.text.h2 }}
+        </h2>
         <section class="why-us__text--list">
           <span class="why-us__text--list__item"
             ><span class="icon"></span>
             <span class="text">
-              <h5>Expertise</h5>
-              <span
-                >Notre équipe est composé de personnel qualifié afin de vous
-                offrir une expertise de qualité</span
-              >
+              <h5>
+                {{ home.why_us.text.left_top.h5 }}
+              </h5>
+              <span>
+                {{ home.why_us.text.left_top.span }}
+              </span>
             </span>
           </span>
           <span class="why-us__text--list__item"
             ><span class="icon"></span>
             <span class="text">
-              <h5>Personnel chaleureux</h5>
-              <span
-                >Nous mettons un point d'honneur à vous accueillir dans un cadre
-                chaleureux</span
-              >
+              <h5>
+                {{ home.why_us.text.right_top.h5 }}
+              </h5>
+              <span>
+                {{ home.why_us.text.right_top.span }}
+              </span>
             </span>
           </span>
           <span class="why-us__text--list__item"
             ><span class="icon"></span>
             <span class="text">
-              <h5>Pièce détachée de qualité</h5>
-              <span
-                >Nous n'utilisons que des piéces de qualité pour vous proposé
-                une meilleur durabilité</span
-              >
+              <h5>
+                {{ home.why_us.text.left_bottom.h5 }}
+              </h5>
+              <span>
+                {{ home.why_us.text.left_bottom.span }}
+              </span>
             </span>
           </span>
           <span class="why-us__text--list__item"
             ><span class="icon"></span>
             <span class="text">
-              <h5>Réparation rapide</h5>
-              <span
-                >Notre équipe fait toujours de son mieux pour effectuer les
-                réparations dans les meilleurs délais</span
-              >
+              <h5>
+                {{ home.why_us.text.right_bottom.h5 }}
+              </h5>
+              <span>
+                {{ home.why_us.text.right_bottom.span }}
+              </span>
             </span>
           </span>
         </section>
       </section>
     </article>
     <article class="special-offer">
-      <h2>Nos offres spéciales</h2>
+      <h2>
+        {{ home.special_offer.h2 }}
+      </h2>
       <section class="special-offer__list">
         <img
           width="370"
@@ -265,36 +272,44 @@
           sizes="100vw" />
         <img
           src="https://cdn.group.renault.com/ren/master/renault-new-cars/product-plans/clio/clio-bja-ph1-hev/hero-zone/2560x1200-desktop/renault-clio5-hev-ph1-hero-zone-desktop-001.jpg.ximg.xsmall.jpg/9bd9376391.jpg"
-          alt="Clio citadine full hybrid extérieur"
+          :alt="home.hero_model.alt"
           class="PictureElement__imgDefault"
           fetchpriority="high" /><noscript
           ><img
             src="https://cdn.group.renault.com/ren/master/renault-new-cars/product-plans/clio/clio-bja-ph1-hev/hero-zone/2560x1200-desktop/renault-clio5-hev-ph1-hero-zone-desktop-001.jpg.ximg.xsmall.jpg/9bd9376391.jpg"
-            alt="Clio citadine full hybrid extérieur" /></noscript
+            :alt="home.herp_model.alt" /></noscript
       ></picture>
       <span class="hero__text bottom_minus">
-        <h3 class="hero__text--first">Besoin d'un nouveau véhicule</h3>
+        <h3 class="hero__text--first">{{ home.hero_model.h3 }}</h3>
         <span class="hero__text--second">
-          <h1>Venez vite chez</h1>
-          <h1>Garage Brenier</h1>
+          <h1>{{ home.hero_model.h1_1 }}</h1>
+          <h1>{{ home.hero_model.h1_2 }}</h1>
         </span>
-        <button class="btn-primary">Contactez-nous</button>
+        <button class="btn-primary">{{ home.hero_model.button }}</button>
         >
       </span>
     </article>
     <article class="our_vehicle">
-      <h2>Nos véhicules</h2>
+      <h2>{{ home.our_vehicle.h2 }}</h2>
       <CarouselVehicle />
       <section class="highlight">
         <div class="highlight__description">
-          <span class="badge">électrique</span>
-          <h2 class="name">{{ hilightVehicle.name }}</h2>
-          <h4 class="price">prix à partir de {{ hilightVehicle.price }} €</h4>
+          <span class="badge">{{
+            home.our_vehicle.highlight_description.span
+          }}</span>
+          <h2 class="name">{{ home.our_vehicle.highlight_description.h2 }}</h2>
+          <h4 class="price">
+            prix à partir de {{ home.our_vehicle.highlight_description.h4 }} €
+          </h4>
           <span v-if="hilightVehicle.bonus" class="bonus"
             >bonus éco de {{ hilightVehicle.bonus }} € non déduit</span
           >
-          <span class="energy-grade" :data="hilightVehicle.energyGrade"
-            >classe énergétique</span
+          <span
+            class="energy-grade"
+            :data="home.our_vehicle.highlight_description.span_energieGrade"
+            >{{
+              home.our_vehicle.highlight_description.span_energieGrade_text
+            }}</span
           >
         </div>
         <picture
@@ -327,7 +342,6 @@
 import home from "../variables/home.config";
 import { Options, Vue } from "vue-class-component";
 import CarouselVehicle from "@/components/Carousel.component.vue";
-
 @Options({
   components: {
     CarouselVehicle,
