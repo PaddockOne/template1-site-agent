@@ -76,6 +76,8 @@ export default class Footer extends Vue {}
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/layouts/color";
+
 footer {
   max-width: 100%;
   overflow-x: hidden;
@@ -86,14 +88,14 @@ footer {
   .contact {
     width: 100%;
     height: 75px;
-    background: #fcf143;
+    background: $primary;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 3em;
     font-family: "Oswald", sans-serif;
     font-size: 1.25em;
-    color: #162b40;
+    color: $secondary;
     @media screen and (max-width: 1200px) {
       font-size: 0.8em;
       gap: 1em;
@@ -107,7 +109,7 @@ footer {
     a {
       display: flex;
       font-size: 1.25em;
-      color: #162b40;
+      color: $secondary;
       text-decoration: none;
       justify-content: center;
       align-items: center;
@@ -134,13 +136,13 @@ footer {
   }
   .footer {
     width: 100%;
-    background: #fff;
+    background: $background_primary;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: "Oswald", sans-serif;
     font-size: 1.25em;
-    color: #fcf143;
+    color: $primary;
     padding: 2em 1em;
     @media screen and (max-width: 1200px) {
       flex-direction: column;
@@ -163,7 +165,7 @@ footer {
         align-items: center;
         gap: 5px;
         height: 40px;
-        border-left: 10px solid #fcf143;
+        border-left: 10px solid $primary;
         font-size: 1.5rem;
         color: #000;
         #brand___first-part,
@@ -182,7 +184,7 @@ footer {
       a {
         display: flex;
         font-size: 1.25em;
-        color: #162b40;
+        color: $secondary;
         text-decoration: none;
         justify-content: center;
         align-items: center;
@@ -216,7 +218,7 @@ footer {
         gap: 0.25em;
         font-weight: 600;
         font-family: "Dosis", sans-serif;
-        color: #162b40;
+        color: $secondary;
         font-size: 1em;
         @media screen and (max-width: 767px) {
           font-size: 0.75em;
@@ -246,7 +248,7 @@ footer {
       .copyright {
         font-weight: 400;
         font-family: "Dosis", sans-serif;
-        color: #162b40;
+        color: $secondary;
         font-size: 0.75em;
         @media screen and (max-width: 767px) {
           text-align: center;

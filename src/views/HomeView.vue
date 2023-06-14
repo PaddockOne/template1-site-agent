@@ -202,7 +202,7 @@
       </section>
     </article>
     <article class="special-offer">
-      <h2>
+      <h2 id="special_offer_h2">
         {{ home.special_offer.h2 }}
       </h2>
       <section class="special-offer__list">
@@ -369,70 +369,70 @@ gsap.registerPlugin(ScrollTrigger);
       duration: 0.5,
     });
     gsap.from(".why-us__img1", {
-      scrollTrigger: ".why-us__img2",
+      scrollTrigger: ".left_top",
       opacity: 0,
       duration: 0.5,
       x: -500,
       ease: "bounce",
     });
     gsap.from(".why-us__img2", {
-      scrollTrigger: ".why-us__img2",
+      scrollTrigger: ".left_top",
       opacity: 0,
       duration: 1,
       x: -500,
       ease: "bounce",
     });
     gsap.from(".left_top", {
-      scrollTrigger: ".why-us__img2",
+      scrollTrigger: ".left_top",
       opacity: 0,
       x: 1200,
       duration: 0.5,
       ease: "back",
     });
     gsap.from(".right_top", {
-      scrollTrigger: ".why-us__img2",
+      scrollTrigger: ".left_top",
       opacity: 0,
       x: 1200,
       duration: 0.75,
       ease: "back",
     });
     gsap.from(".left_bottom", {
-      scrollTrigger: ".why-us__img2",
+      scrollTrigger: ".left_top",
       opacity: 0,
       x: 1200,
       duration: 1,
       ease: "back",
     });
     gsap.from(".right_bottom", {
-      scrollTrigger: ".why-us__img2",
+      scrollTrigger: ".right_top",
       opacity: 0,
       x: 1200,
       duration: 1.25,
       ease: "back",
     });
     gsap.from(".why-us__text--title", {
-      scrollTrigger: ".why-us__img2",
+      scrollTrigger: ".why-us__text--title",
       opacity: 0,
       x: 1200,
       duration: 1.25,
       ease: "back",
     });
     gsap.from(".special-offer-img1", {
-      scrollTrigger: ".heroModel_img",
+      scrollTrigger: "#special_offer_h2",
       opacity: 0,
       y: -500,
       duration: 0.5,
       ease: "slow",
     });
     gsap.from(".special-offer-img2", {
-      scrollTrigger: ".heroModel_img",
+      scrollTrigger: "#special_offer_h2",
       opacity: 0,
       y: -500,
       duration: 0.75,
       ease: "slow",
     });
     gsap.from(".special-offer-img3", {
-      scrollTrigger: ".heroModel_img",
+      scrollTrigger: "#special_offer_h2",
       opacity: 0,
       y: -500,
       duration: 1,
@@ -441,7 +441,7 @@ gsap.registerPlugin(ScrollTrigger);
     gsap.from(".heroModel_img", {
       scrollTrigger: ".heroModel_img",
       opacity: 0,
-      duration: 1.5,
+      duration: 1,
     });
     gsap.from(".our_vehicle", {
       scrollTrigger: ".our_vehicle",
@@ -478,6 +478,8 @@ export default class HomeView extends Vue {
 </script>
 
 <style lang="scss">
+@import "../assets/layouts/color";
+
 main {
   max-width: 100%;
   overflow-x: hidden;
@@ -519,7 +521,7 @@ main {
     left: 2.5%;
     &--first {
       font-family: "Oswald", sans-serif;
-      color: #fcf143;
+      color: $primary;
       font-weight: 600;
       font-size: 1.5rem;
       margin: 0;
@@ -532,7 +534,7 @@ main {
       flex-direction: column;
       h1 {
         font-family: "Oswald", sans-serif;
-        color: #fff;
+        color: $background_primary;
         font-size: 2.5rem;
         margin: 0;
         line-height: 1em;
@@ -574,7 +576,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
+    background-color: $background_primary;
     padding: 2em 3em;
     overflow: visible;
     border-radius: 0.25em;
@@ -618,7 +620,7 @@ main {
         h3 {
           font-family: "Oswald", sans-serif;
           margin: 0;
-          color: #162b40;
+          color: $secondary;
           white-space: nowrap;
         }
         .hero__modal__text--italic {
@@ -645,7 +647,7 @@ main {
   justify-content: center;
   padding: 10em 10px 2em 10px;
   gap: 10em;
-  background: #f8f8f9;
+  background: $background_secondary;
   &__img {
     display: flex;
     flex-direction: column;
@@ -672,7 +674,7 @@ main {
     }
     h2 {
       font-family: "Oswald", sans-serif;
-      color: #162b40;
+      color: $secondary;
       font-size: 2.5rem;
       font-weight: 500;
       padding: 0 0 1em 0;
@@ -715,7 +717,7 @@ main {
         .icon {
           min-width: 75px;
           height: 65px;
-          background-color: #fcf143;
+          background-color: $primary;
           display: block;
           clip-path: polygon(
             25% 0%,
@@ -744,7 +746,7 @@ main {
         .text {
           h5 {
             font-family: "Oswald", sans-serif;
-            color: #162b40;
+            color: $secondary;
             font-size: 1.25rem;
             margin: 0;
           }
@@ -774,7 +776,7 @@ main {
   }
   h2 {
     font-family: "Oswald", sans-serif;
-    color: #162b40;
+    color: $secondary;
     font-size: 2.5rem;
     font-weight: 500;
     margin: 0;
@@ -803,7 +805,7 @@ main {
 }
 .our_vehicle {
   width: 100%;
-  background: #f8f8f9;
+  background: $background_secondary;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -811,7 +813,7 @@ main {
   padding: 2em 10px 2em 10px;
   h2 {
     font-family: "Oswald", sans-serif;
-    color: #162b40;
+    color: $secondary;
     font-size: 2.5rem;
     font-weight: 500;
     margin: 0;
@@ -862,7 +864,7 @@ main {
       }
       .bonus {
         font-family: "Dosis", sans-serif;
-        color: #fff;
+        color: $background_primary;
         font-size: 1em;
         background: #72c293;
         padding: 0.1em 0.25em;
@@ -886,7 +888,7 @@ main {
           height: 1em;
           padding: 0.1em 0.25em;
           background: #289548;
-          color: #fff;
+          color: $background_primary;
           display: flex;
           justify-content: flex-start;
           align-items: center;
@@ -895,7 +897,7 @@ main {
       }
       h4 {
         font-family: "Oswald", sans-serif;
-        color: #162b40;
+        color: $secondary;
         font-size: 1.5rem;
         font-weight: 500;
         margin: 0;

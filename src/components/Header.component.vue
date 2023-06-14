@@ -67,6 +67,8 @@ export default class Header extends Vue {
 }
 </script>
 <style scoped lang="scss">
+@import "../assets/layouts/color";
+
 header {
   display: flex;
   flex-direction: column;
@@ -77,7 +79,7 @@ header {
   z-index: 100;
   top: 0;
   left: 0;
-  background-color: #fff;
+  background-color: $background_primary;
   #contact {
     width: 75%;
     padding: 5px 10px;
@@ -99,7 +101,7 @@ header {
       font-size: 1em;
     }
     a {
-      color: #162b40;
+      color: $secondary;
       text-decoration: none;
       font-weight: 600;
       font-family: "Dosis", sans-serif;
@@ -129,7 +131,7 @@ header {
         gap: 0.25em;
         font-weight: 600;
         font-family: "Dosis", sans-serif;
-        color: #162b40;
+        color: $secondary;
         font-size: 1em;
         @media screen and (min-width: 768px) and (max-width: 1200px) {
           font-size: 0.8em;
@@ -179,7 +181,7 @@ header {
       align-items: center;
       gap: 5px;
       height: 40px;
-      border-left: 10px solid #fcf143;
+      border-left: 10px solid $primary;
       font-size: 1.5rem;
       color: #000;
       #brand___first-part,
@@ -199,7 +201,7 @@ header {
       @media screen and (max-width: 1200px) {
         left: 0 !important;
         transition: all 0.5s ease;
-        background-color: #fff;
+        background-color: $background_primary;
         height: calc(100vh - 60px);
       }
     }
@@ -229,7 +231,7 @@ header {
         .bar {
           width: 30px;
           height: 3px;
-          background-color: #162b40;
+          background-color: $secondary;
           border-radius: 3px;
           transition: opacity 0.5s ease;
         }
@@ -239,7 +241,7 @@ header {
           top: 0;
           width: 30px;
           height: 3px;
-          background-color: #162b40;
+          background-color: $secondary;
           border-radius: 3px;
           transition: transform 0.5s ease;
         }
@@ -249,7 +251,7 @@ header {
           bottom: 0;
           width: 30px;
           height: 3px;
-          background-color: #162b40;
+          background-color: $secondary;
           border-radius: 3px;
           transition: transform 0.5s ease;
         }
@@ -289,7 +291,7 @@ header {
             position: absolute;
             width: 100%;
             height: 2px;
-            background-color: #fcf143;
+            background-color: $primary;
             bottom: 0;
             left: 0;
             transform: scaleX(0);
@@ -301,7 +303,7 @@ header {
           }
           a {
             text-decoration: none;
-            color: #162b40;
+            color: $secondary;
           }
         }
       }
