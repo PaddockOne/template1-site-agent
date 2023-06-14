@@ -70,6 +70,8 @@ export default class Header extends Vue {
 @import "../assets/layouts/color";
 
 header {
+  max-width: 100%;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -100,10 +100,18 @@
         <label for="demande">--Type de demande--</label>
         <select v-model="selectedOption" name="demande" id="demande">
           <option value=""></option>
-          <option value="neuf">{{ contact.content.form.option1 }}</option>
-          <option value="occasion">{{ contact.content.form.option2 }}</option>
-          <option value="garage">{{ contact.content.form.option3 }}</option>
-          <option value="autre">{{ contact.content.form.option4 }}</option>
+          <option id="neuf" value="neuf">
+            {{ contact.content.form.option1 }}
+          </option>
+          <option id="occasion" value="occasion">
+            {{ contact.content.form.option2 }}
+          </option>
+          <option id="garage" value="garage">
+            {{ contact.content.form.option3 }}
+          </option>
+          <option id="autre" value="autre">
+            {{ contact.content.form.option4 }}
+          </option>
         </select>
         <label v-if="selectedOption === 'autre'" for="subject">Objet</label>
         <input
@@ -124,6 +132,9 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import contact from "../variables/contact.config";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 @Options({
   data() {
@@ -131,6 +142,27 @@ import contact from "../variables/contact.config";
       selectedOption: "",
       contact: contact,
     };
+  },
+  mounted() {
+    gsap.from(".hero", {
+      scrollTrigger: ".hero",
+      opacity: 0,
+      x: 800,
+      duration: 0.5,
+    });
+    gsap.from("h1", {
+      scrollTrigger: "h1",
+      opacity: 0,
+      duration: 0.5,
+    });
+    gsap.from("form", {
+      scrollTrigger: "form",
+      opacity: 0,
+      x: 300,
+      y: 300,
+      duration: 1,
+      ease: "slow",
+    });
   },
 })
 export default class ContactView extends Vue {
@@ -177,6 +209,15 @@ button {
     width: 40%;
     padding: 2em;
     height: 500px;
+    @media screen and (max-width: 1400px) and (min-width: 1000px) {
+      width: 60%;
+    }
+    @media screen and (max-width: 1000px) and (min-width: 500px) {
+      width: 80%;
+    }
+    @media screen and (max-width: 500px) {
+      width: 95%;
+    }
     input,
     textarea,
     select {
