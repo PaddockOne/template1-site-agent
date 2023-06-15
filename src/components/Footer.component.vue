@@ -2,8 +2,8 @@
   <footer>
     <section class="contact">
       <h2 id="contact_h2">{{ footer.contact.h2 }}</h2>
-      <a id="contact_a" href="tel:0492503091" target="_blank"
-        >Appellez nous au: {{ footer.contact.a }}</a
+      <a id="contact_a" :href="'tel:' + footer.contact.phone" target="_blank"
+        >Appellez nous au: {{ footer.contact.phone }}</a
       >
     </section>
     <section class="footer">
@@ -12,8 +12,8 @@
           <h1 id="brand___first-part">{{ footer.brand.h1_1 }}</h1>
           <h1 id="brand___second-part">{{ footer.brand.h1_2 }}</h1>
         </section>
-        <a href="tel:0492503091" target="_blank"
-          >Appellez nous au: {{ footer.contact.a }}</a
+        <a :href="'tel:' + footer.contact.phone" target="_blank"
+          >Appellez nous au: {{ footer.contact.phone }}</a
         >
         <span class="hours"
           ><h5>{{ footer.hours.h5 }}</h5>
@@ -49,14 +49,12 @@ gsap.registerPlugin(ScrollTrigger);
       scrollTrigger: "footer",
       duration: 1,
       x: -300,
-      y: 300,
       opacity: 0,
     });
     gsap.from(".svg", {
       scrollTrigger: "footer",
       duration: 1,
       x: 300,
-      y: 300,
       opacity: 0,
     });
     gsap.from("#contact_h2", {

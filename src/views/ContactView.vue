@@ -158,7 +158,6 @@ gsap.registerPlugin(ScrollTrigger);
     gsap.from("form", {
       scrollTrigger: "form",
       opacity: 0,
-      x: 300,
       y: 300,
       duration: 1,
       ease: "slow",

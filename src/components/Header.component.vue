@@ -31,27 +31,40 @@
         ><div class="bar"></div
       ></span>
       <ul @click="toggleNavMenu()" :class="{ show: toggleNav }">
+        <!-- <li><router-link to="/">Accueil</router-link></li>
+        <li><router-link to="/about">A propos</router-link></li>
         <li>
-          <RouterLink to="/" :href="'/'">
+          <router-link to="/contact">
+            <button class="btn-primary">Contactez-nous</button>
+          </router-link>
+        </li> -->
+        <li>
+          <router-link to="/" :href="'/'">
             <span style="display: none">Accueil</span>
             <span style="display: inline">Accueil</span>
-          </RouterLink>
+          </router-link>
         </li>
         <li>
-          <RouterLink to="/about" :href="'/about'">
+          <router-link
+            to="/a-propos-garagiste-nom-ville"
+            :href="'/a-propos-garagiste-nom-ville'"
+          >
             <span style="display: none">A propos</span>
             <span style="display: inline">A propos</span>
-          </RouterLink>
+          </router-link>
         </li>
         <li>
-          <RouterLink to="/contact" :href="'/contact'">
+          <router-link
+            to="/garagiste-renault-nom-ville/contact"
+            :href="'/garagiste-renault-nom-ville/contact'"
+          >
             <button class="btn-primary" style="display: none">
               Contactez-nous
             </button>
             <button class="btn-primary" style="display: inline">
               Contactez-nous
             </button>
-          </RouterLink>
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -68,7 +81,6 @@ gsap.registerPlugin(ScrollTrigger);
     gsap.from("header", {
       scrollTrigger: "header",
       opacity: 0,
-      y: -100,
       duration: 1,
     });
   },
@@ -78,6 +90,8 @@ export default class Header extends Vue {
 
   toggleNavMenu() {
     this.toggleNav = !this.toggleNav;
+
+    console.log(this.toggleNav);
   }
 }
 </script>

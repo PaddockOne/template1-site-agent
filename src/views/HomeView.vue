@@ -450,8 +450,6 @@ gsap.registerPlugin(ScrollTrigger);
     });
     gsap.from(".highlight", {
       scrollTrigger: ".our_vehicle",
-      y: 500,
-      x: 500,
       opacity: 0,
       duration: 1.5,
     });

@@ -1,7 +1,7 @@
 const footer: {
   contact: {
     h2: string;
-    a: string;
+    phone: string;
   };
   brand: {
     h1_1: string;
@@ -15,7 +15,7 @@ const footer: {
 } = {
   contact: {
     h2: "Prenez rendez-vous maintenant",
-    a: "04 92 50 30 91",
+    phone: "04 92 50 30 91",
   },
   brand: {
     h1_1: "Garage",

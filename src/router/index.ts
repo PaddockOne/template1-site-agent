@@ -8,12 +8,12 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
   },
   {
-    path: "/about",
+    path: "/a-propos-garagiste-nom-ville",
     name: "about",
     component: () => import("../views/AboutView.vue"),
   },
   {
-    path: "/contact",
+    path: "/garagiste-renault-nom-ville/contact",
     name: "contact",
     component: () => import("../views/ContactView.vue"),
   },
