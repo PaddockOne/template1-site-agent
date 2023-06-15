@@ -1,30 +1,30 @@
 <template>
   <footer>
     <section class="contact">
-      <h2 id="contact_h2">{{ footer.contact.h2 }}</h2>
-      <a id="contact_a" :href="'tel:' + footer.contact.phone" target="_blank"
-        >Appellez nous au: {{ footer.contact.phone }}</a
+      <h2 id="contact_h2">Prenez rendez-vous maintenant</h2>
+      <a id="contact_a" :href="'tel:' + header.phone" target="_blank"
+        >Appellez nous au: {{ header.phone }}</a
       >
     </section>
     <section class="footer">
       <span class="general">
         <section class="brand">
-          <h1 id="brand___first-part">{{ footer.brand.h1_1 }}</h1>
-          <h1 id="brand___second-part">{{ footer.brand.h1_2 }}</h1>
+          <h1 id="brand___first-part">{{ header.brand.h1_1 }}</h1>
+          <h1 id="brand___second-part">{{ header.brand.h1_2 }}</h1>
         </section>
-        <a :href="'tel:' + footer.contact.phone" target="_blank"
-          >Appellez nous au: {{ footer.contact.phone }}</a
+        <a :href="'tel:' + header.phone" target="_blank"
+          >Appellez nous au: {{ header.phone }}</a
         >
         <span class="hours"
-          ><h5>{{ footer.hours.h5 }}</h5>
-          <p>{{ footer.hours.p_1 }}</p>
-          <p>{{ footer.hours.p_2 }}</p></span
+          ><h5>Horaires</h5>
+          <p>{{ header.location.horaire }}</p>
+          <p>{{ header.location.horaire_weekend }}</p></span
         >
         <span class="copyright">© 2022 TeamDevSyn</span>
       </span>
       <iframe
         class="svg"
-        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11369.175398940632!2d6.1811782!3d44.5705559!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x182e9ba5197ef442!2sBrenier%20Automobiles%20-%20Renault%20Dacia%20La%20B%C3%A2tie%20neuve!5e0!3m2!1sfr!2sfr!4v1668079046323!5m2!1sfr!2sfr"
+        :src="header.location.localisation_map"
         width="800"
         height="300"
         style="border: 0"
@@ -36,7 +36,7 @@
   </footer>
 </template>
 <script lang="ts">
-import footer from "../variables/footer.config";
+import header from "../variables/header.config";
 import { Options, Vue } from "vue-class-component";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -72,7 +72,7 @@ gsap.registerPlugin(ScrollTrigger);
   },
 })
 export default class Footer extends Vue {
-  footer = footer;
+  header = header;
 }
 </script>
 

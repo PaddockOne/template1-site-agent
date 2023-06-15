@@ -4,25 +4,25 @@
       <section id="location">
         <span
           ><h5>Adresse</h5>
-          <a href="https://goo.gl/maps/ku4aFjh4oGNiS1xN8" target="_blank"
-            >La Faurie, 05230 La Bâtie-Neuve</a
-          ></span
+          <a :href="header.location.localisation" target="_blank">{{
+            header.location.address
+          }}</a></span
         >
         <span
           ><h5>Horaires</h5>
-          <p>lun-jeu: 7:00-12:30, 13:30-18:30</p>
-          <p>sam: 09:00-12:00</p></span
+          <p>{{ header.location.horaire }}</p>
+          <p>{{ header.location.horaire_weekend }}</p></span
         >
       </section>
       <section id="phone">
         <h5>Téléphone</h5>
-        <a href="tel:0492503091" target="_blank">04 92 50 30 91</a>
+        <a :href="'tel:' + header.phone" target="_blank">{{ header.phone }}</a>
       </section>
     </section>
     <nav>
       <section class="brand">
-        <h1 id="brand___first-part">Garage</h1>
-        <h1 id="brand___second-part">Brenier</h1>
+        <h1 id="brand___first-part">{{ header.brand.h1_1 }}</h1>
+        <h1 id="brand___second-part">{{ header.brand.h1_2 }}</h1>
       </section>
       <span
         id="burger-btn"
@@ -31,13 +31,6 @@
         ><div class="bar"></div
       ></span>
       <ul @click="toggleNavMenu()" :class="{ show: toggleNav }">
-        <!-- <li><router-link to="/">Accueil</router-link></li>
-        <li><router-link to="/about">A propos</router-link></li>
-        <li>
-          <router-link to="/contact">
-            <button class="btn-primary">Contactez-nous</button>
-          </router-link>
-        </li> -->
         <li>
           <router-link to="/" :href="'/'">
             <span style="display: none">Accueil</span>
@@ -72,6 +65,7 @@
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import header from "../variables/header.config";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
@@ -86,6 +80,7 @@ gsap.registerPlugin(ScrollTrigger);
   },
 })
 export default class Header extends Vue {
+  header = header;
   toggleNav = false;
 
   toggleNavMenu() {
