@@ -49,14 +49,6 @@ const home: {
   };
   our_vehicle: {
     h2: string;
-    highlight_description: {
-      span: string;
-      h2: string;
-      h4: number;
-      span_bonus: number;
-      span_energieGrade: string;
-      span_energieGrade_text: string;
-    };
   };
 } = {
   hero: {
@@ -109,14 +101,6 @@ const home: {
   },
   our_vehicle: {
     h2: "Nos véhicules",
-    highlight_description: {
-      span: "électrique",
-      h2: "MEGANE E-TECH 100% ELECTRIC",
-      h4: 37200,
-      span_bonus: 6000,
-      span_energieGrade: "A",
-      span_energieGrade_text: "classe énergétique",
-    },
   },
 };
 export default home;

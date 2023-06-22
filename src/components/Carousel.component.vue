@@ -1,15 +1,18 @@
 <template>
   <carousel :settings="settings" :breakpoints="breakpoints">
-    <slide v-for="vehicle in vehicleList" :key="vehicle.id">
+    <slide v-for="vehicle in vehicles" :key="vehicle.id_carousel_site_agency">
       <div class="slide">
         <div class="slide__image">
-          <img :src="vehicle.img" :alt="vehicle.name" />
+          <img
+            :src="vehicle.photo_vehicles"
+            :alt="vehicle.title_carousel_site_agency"
+          />
         </div>
         <div class="slide__content">
-          <h2>{{ vehicle.name }}</h2>
-          <p>à partir de {{ vehicle.price }}€</p>
-          <p v-if="vehicle.bonus" class="bonus">
-            bonus éco de {{ vehicle.bonus }}€ non déduit
+          <h2>{{ vehicle.title_carousel_site_agency }}</h2>
+          <p>à partir de {{ vehicle.price_carousel_site_agency }}€</p>
+          <p v-if="vehicle.aside_carousel_site_agency" class="bonus">
+            bonus éco de {{ vehicle.aside_carousel_site_agency }}€ non déduit
           </p>
           <button class="btn-primary">Contactez-nous</button>
         </div>
@@ -24,52 +27,14 @@
 <script>
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import { Vue } from "vue-class-component";
+import axios from "axios";
 
 export default {
   name: "CarouselVehicle",
   data() {
     return {
-      vehicleList: [
-        {
-          id: 1,
-          name: "TWIZY E-TECH 100% ELECTRIC",
-          img: "https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FTWZ%3Bck%3DVP%2Ftwizy-e-tech-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM3_-TEGNE",
-          price: 11600,
-          bonus: 900,
-        },
-        {
-          id: 2,
-          name: "TWINGO",
-          img: "https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2F2W3%2Ftwingo%2Fc%2FA-ENS_0MDL2P1SERIELIM2_-OVRPP",
-          price: 15750,
-        },
-        {
-          id: 3,
-          name: "ZOE E-TECH 100% ELECTRIC",
-          img: "https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZOE%3Bck%3DVP%2Fzoe-e-tech-electrique%2Fc%2FA-ENS_0MDL3P1SERIELIM3_-TERRE",
-          price: 33700,
-          bonus: 6000,
-        },
-        {
-          id: 4,
-          name: "CLIO",
-          img: "https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FCL5%3Bck%3DVP%2Fclio%2Fc%2FA-ENS_0MDL2PSP1SERIESPE1_-TERQH",
-          price: 17100,
-        },
-        {
-          id: 5,
-          name: "CAPTUR",
-          img: "https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FCP1%2Fcaptur%2Fc%2FA-ENS_0MDL2PSP1SERIELIM2_-BIXPA",
-          price: 23400,
-        },
-        {
-          id: 6,
-          name: "MEGANE E-TECH 100% ELECTRIC",
-          img: "https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU",
-          price: 37200,
-          bonus: 6000,
-        },
-      ],
+      vehicles: [],
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
@@ -85,6 +50,17 @@ export default {
         },
       },
     };
+  },
+  mounted() {
+    axios
+      .get("http://localhost:3500/carousel/get")
+      .then((response) => {
+        this.vehicles = response.data.data;
+        console.log(this.vehicles);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   components: {
     Carousel,

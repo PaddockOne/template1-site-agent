@@ -294,23 +294,23 @@
       <CarouselVehicle />
       <section class="highlight">
         <div class="highlight__description">
-          <span class="badge">{{
-            home.our_vehicle.highlight_description.span
-          }}</span>
-          <h2 class="name">{{ home.our_vehicle.highlight_description.h2 }}</h2>
+          <span class="badge">{{ highlight.badge_carousel_site_agency }}</span>
+          <h2 class="name">{{ highlight.title_carousel_site_agency }}</h2>
           <h4 class="price">
-            prix à partir de {{ home.our_vehicle.highlight_description.h4 }} €
+            prix à partir de {{ highlight.price_carousel_site_agency }} €
           </h4>
-          <span v-if="hilightVehicle.bonus" class="bonus"
-            >bonus éco de {{ hilightVehicle.bonus }} € non déduit</span
+          <span
+            v-if="highlight.aside_carousel_site_agency !== null"
+            class="bonus"
+            >bonus éco de {{ highlight.aside_carousel_site_agency }} € non
+            déduit</span
           >
           <span
             class="energy-grade"
-            :data="home.our_vehicle.highlight_description.span_energieGrade"
-            >{{
-              home.our_vehicle.highlight_description.span_energieGrade_text
-            }}</span
+            :data="highlight.class_energy_carousel_site_agency"
           >
+            Classe énergétique
+          </span>
         </div>
         <picture
           class="LazyPictureElement LazyPictureElement_loaded WebrenderPictureElement RangeModelCard__image is-ratio-forced"
@@ -342,6 +342,7 @@
 import home from "../variables/home.config";
 import { Options, Vue } from "vue-class-component";
 import CarouselVehicle from "@/components/Carousel.component.vue";
+import axios from "axios";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
@@ -353,9 +354,23 @@ gsap.registerPlugin(ScrollTrigger);
   data() {
     return {
       home: home,
+      highlight: [],
     };
   },
   mounted() {
+    axios
+      .get("http://localhost:3500/carousel/get-current-ad")
+      .then((response) => {
+        this.highlight = response.data.data;
+        this.highlight = this.highlight[0];
+        console.log(
+          "hilightVehicle",
+          this.highlight.badge_carousel_site_agency
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     gsap.from(".hero", {
       scrollTrigger: ".hero",
       opacity: 0,
@@ -456,6 +471,7 @@ gsap.registerPlugin(ScrollTrigger);
   },
 })
 export default class HomeView extends Vue {
+  highlight!: any;
   home = home;
   hilightVehicle: {
     id: number;
