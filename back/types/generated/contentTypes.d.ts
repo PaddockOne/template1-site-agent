@@ -362,60 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiPagePrincipalePagePrincipale extends Schema.CollectionType {
-  collectionName: 'page_principales';
-  info: {
-    singularName: 'page-principale';
-    pluralName: 'page-principales';
-    displayName: 'Page principale';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    premiere_partie_du_titre: Attribute.Text &
-      Attribute.Required &
-      Attribute.Unique;
-    deuxieme_partie_du_titre: Attribute.Text &
-      Attribute.Required &
-      Attribute.Unique;
-    troisieme_partie_du_titre: Attribute.Text &
-      Attribute.Required &
-      Attribute.Unique;
-    sous_titre: Attribute.Text & Attribute.Required & Attribute.Unique;
-    image_principale: Attribute.Media;
-    image_banniere: Attribute.Media;
-    titre_banniere_italique: Attribute.Text;
-    titre_banniere_gras: Attribute.Text;
-    texte_banniere: Attribute.Text;
-    texte_bouton_banniere: Attribute.Text;
-    titre_encars_competence: Attribute.Text;
-    titre_premiere_competence: Attribute.Text;
-    competences: Attribute.Media;
-    titre_encars_offre_special: Attribute.Text;
-    titre_deuxieme_banniere: Attribute.Text;
-    premier_texte_deuxieme_banniere: Attribute.Text;
-    deuxieme_texte_deuxieme_banniere: Attribute.Text;
-    texte_bouton_deuxieme_banniere: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::page-principale.page-principale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::page-principale.page-principale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -822,6 +768,109 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiNavbarNavbar extends Schema.CollectionType {
+  collectionName: 'navbars';
+  info: {
+    singularName: 'navbar';
+    pluralName: 'navbars';
+    displayName: 'Navbar';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    adresse: Attribute.Text;
+    localisation_GPS: Attribute.Text;
+    horaires_semaine: Attribute.Text;
+    horaires_weekend: Attribute.Text;
+    telephone: Attribute.Text;
+    nom_garage_premier_texte_gras: Attribute.Text;
+    nom_garage_second_texte: Attribute.Text;
+    nom_page_accueil: Attribute.Text & Attribute.Required & Attribute.Unique;
+    nom_page_a_propos: Attribute.Text & Attribute.Required & Attribute.Unique;
+    nom_page_contact: Attribute.Text & Attribute.Required & Attribute.Unique;
+    lien_url_page_accueil: Attribute.Text &
+      Attribute.Required &
+      Attribute.Unique;
+    lien_url_page_a_propos: Attribute.Text &
+      Attribute.Required &
+      Attribute.Unique;
+    lien_url_page_contact: Attribute.Text &
+      Attribute.Required &
+      Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::navbar.navbar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::navbar.navbar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPagePrincipalePagePrincipale extends Schema.CollectionType {
+  collectionName: 'page_principales';
+  info: {
+    singularName: 'page-principale';
+    pluralName: 'page-principales';
+    displayName: 'Page principale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    premiere_partie_du_titre: Attribute.Text &
+      Attribute.Required &
+      Attribute.Unique;
+    deuxieme_partie_du_titre: Attribute.Text &
+      Attribute.Required &
+      Attribute.Unique;
+    troisieme_partie_du_titre: Attribute.Text &
+      Attribute.Required &
+      Attribute.Unique;
+    sous_titre: Attribute.Text & Attribute.Required & Attribute.Unique;
+    image_principale: Attribute.Media;
+    image_banniere: Attribute.Media;
+    titre_banniere_italique: Attribute.Text;
+    titre_banniere_gras: Attribute.Text;
+    texte_banniere: Attribute.Text;
+    texte_bouton_banniere: Attribute.Text;
+    titre_encars_competence: Attribute.Text;
+    titre_premiere_competence: Attribute.Text;
+    competences: Attribute.Media;
+    titre_encars_offre_special: Attribute.Text;
+    titre_deuxieme_banniere: Attribute.Text;
+    premier_texte_deuxieme_banniere: Attribute.Text;
+    deuxieme_texte_deuxieme_banniere: Attribute.Text;
+    texte_bouton_deuxieme_banniere: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-principale.page-principale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-principale.page-principale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -832,7 +881,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::page-principale.page-principale': ApiPagePrincipalePagePrincipale;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -841,6 +889,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::navbar.navbar': ApiNavbarNavbar;
+      'api::page-principale.page-principale': ApiPagePrincipalePagePrincipale;
     }
   }
 }
