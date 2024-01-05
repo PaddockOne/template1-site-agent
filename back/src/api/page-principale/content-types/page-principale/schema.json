@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "page_principales",
+  "info": {
+    "singularName": "page-principale",
+    "pluralName": "page-principales",
+    "displayName": "Page principale",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "premiere_partie_du_titre": {
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "deuxieme_partie_du_titre": {
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "troisieme_partie_du_titre": {
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "sous_titre": {
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "image_principale": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "image_banniere": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "titre_banniere_italique": {
+      "type": "text",
+      "required": false
+    },
+    "titre_banniere_gras": {
+      "type": "text"
+    },
+    "texte_banniere": {
+      "type": "text"
+    },
+    "texte_bouton_banniere": {
+      "type": "text"
+    },
+    "titre_encars_competence": {
+      "type": "text"
+    },
+    "titre_premiere_competence": {
+      "type": "text"
+    }
+  }
+}

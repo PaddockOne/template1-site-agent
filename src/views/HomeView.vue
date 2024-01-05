@@ -79,23 +79,23 @@
           type="image/jpeg"
         />
         <img
-          src="https://cdn.group.renault.com/ren/fr/home/austral/austral_carrousel_mobile_2560x4551.jpg.ximg.xsmall.jpg/0c1cc21218.jpg"
+          :src="imgPrincipale"
           :alt="home.hero.picture.alt1"
           class="PictureElement__imgDefault"
           fetchpriority="high"
         /><noscript
-          ><img
-            src="https://cdn.group.renault.com/ren/fr/home/austral/austral_carrousel_mobile_2560x4551.jpg.ximg.xsmall.jpg/0c1cc21218.jpg"
-            alt="Nouveau SUV Austral E-Tech full hybrid"
+          ><img alt="Nouveau SUV Austral E-Tech full hybrid"
         /></noscript>
       </picture>
       <span class="hero__text">
-        <h3 class="hero__text--first">{{ home.hero.hero__text.h3 }}</h3>
+        <h3 class="hero__text--first">
+          {{ data_home.premiere_partie_du_titre }}
+        </h3>
         <span class="hero__text--second">
-          <h1>{{ home.hero.hero__text.h1_1 }}</h1>
-          <h1>{{ home.hero.hero__text.h1_2 }}</h1>
+          <h1>{{ data_home.deuxieme_partie_du_titre }}</h1>
+          <h1>{{ data_home.troisieme_partie_du_titre }}</h1>
         </span>
-        <span class="hero__text--third">{{ home.hero.hero__text.span }}</span>
+        <span class="hero__text--third">{{ data_home.sous_titre }}</span>
       </span>
       <section class="hero__modal">
         <img
@@ -107,18 +107,21 @@
           "
           sizes="(max-width: 350px) 100vw, 350px"
         />
+        <!-- <img :src="imgBanniere" alt="" class="attachment-large size-large" /> -->
         <span class="hero__modal__text">
           <section>
             <h3 class="hero__modal__text--italic">
-              {{ home.hero.hero__modal__text.h3_italic }}
+              {{ data_home.titre_banniere_italique }}
             </h3>
             <h3 class="hero__modal__text--bold">
-              {{ home.hero.hero__modal__text.h3_bold }}
+              {{ data_home.titre_banniere_gras }}
             </h3>
           </section>
-          <span>{{ home.hero.hero__modal__text.span }}</span>
+          <span>{{ data_home.texte_banniere }}</span>
         </span>
-        <button class="btn-primary">{{ home.hero.button }}</button>
+        <button class="btn-primary">
+          {{ data_home.texte_bouton_banniere }}
+        </button>
       </section>
     </article>
     <article class="why-us">
@@ -151,7 +154,7 @@
       </section>
       <section class="why-us__text">
         <h2 class="why-us__text--title">
-          {{ home.why_us.text.h2 }}
+          {{ data_home.titre_encars_competence }}
         </h2>
         <section class="why-us__text--list">
           <span class="why-us__text--list__item left_top"
@@ -277,7 +280,7 @@
           fetchpriority="high" /><noscript
           ><img
             src="https://cdn.group.renault.com/ren/master/renault-new-cars/product-plans/clio/clio-bja-ph1-hev/hero-zone/2560x1200-desktop/renault-clio5-hev-ph1-hero-zone-desktop-001.jpg.ximg.xsmall.jpg/9bd9376391.jpg"
-            :alt="home.herp_model.alt" /></noscript
+            :alt="home.hero_model.alt" /></noscript
       ></picture>
       <span class="hero__text bottom_minus">
         <h3 class="hero__text--first">{{ home.hero_model.h3 }}</h3>
@@ -315,16 +318,11 @@
         <picture
           class="LazyPictureElement LazyPictureElement_loaded WebrenderPictureElement RangeModelCard__image is-ratio-forced"
           ><source
-            srcset="
-              https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_XLARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU,
-              https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_XLARGE_DENSITY2/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU 2x
+            :srcset="
+              highlight.photo_vehicles + '&output=webp&width=500&height=400'
             "
             media="(min-width: 1024px)" />
-          <source
-            srcset="
-              https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU,
-              https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY2/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU 2x
-            " />
+          <source :srcset="highlight.photo_vehicles" />
           <img
             src="https://www.renault.fr/agg/vn/unique/ONE_DACIA_PP_LARGE_DENSITY1/r_brandSite_carPicker_1.png?uri=https%3A%2F%2Ffr.co.rplug.renault.com%2Fproduct%2Fmodel%2FZO1%2Fmegane-e-tech-100-electrique%2Fc%2FA-ENS_0MDL2P1SERIELIM4_-BIYWU"
             alt="MEGANE E-TECH 100% ELECTRIC"
@@ -355,9 +353,25 @@ gsap.registerPlugin(ScrollTrigger);
     return {
       home: home,
       highlight: [],
+      data_home: "",
+      link: "http://localhost:1338",
+      imgPrincipale: "",
+      imgBanniere: "",
     };
   },
   mounted() {
+    axios
+      .get("http://localhost:1338/api/page-principales/1?populate=*")
+      .then((response) => {
+        this.data_home = response.data.data.attributes;
+        this.imgPrincipale =
+          this.link + this.data_home.image_principale.data.attributes.url;
+        this.imgBanniere =
+          this.link + this.data_home.image_banniere.data.attributes.url;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     axios
       .get("http://localhost:3500/carousel/get-current-ad")
       .then((response) => {
@@ -488,6 +502,9 @@ export default class HomeView extends Vue {
     bonus: 6000,
     energyGrade: "A",
   };
+  data_home: any;
+  imgPrincipale: string | undefined;
+  imgBanniere: string | undefined;
 }
 </script>
 

@@ -53,7 +53,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:3500/carousel/get")
+      .get("http://localhost:3500/carousel/get-carousel")
       .then((response) => {
         this.vehicles = response.data.data;
         console.log(this.vehicles);
