@@ -768,6 +768,39 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCouleurCouleur extends Schema.CollectionType {
+  collectionName: 'couleurs';
+  info: {
+    singularName: 'couleur';
+    pluralName: 'couleurs';
+    displayName: 'Couleur';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    couleur_principale: Attribute.String &
+      Attribute.CustomField<'plugin::color-picker.color'>;
+    couleur_secondaire: Attribute.String &
+      Attribute.CustomField<'plugin::color-picker.color'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::couleur.couleur',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::couleur.couleur',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiFooterFooter extends Schema.CollectionType {
   collectionName: 'footers';
   info: {
@@ -847,6 +880,68 @@ export interface ApiNavbarNavbar extends Schema.CollectionType {
   };
 }
 
+export interface ApiPageAPropoPageAPropo extends Schema.CollectionType {
+  collectionName: 'page_a_propos';
+  info: {
+    singularName: 'page-a-propo';
+    pluralName: 'page-a-propos';
+    displayName: 'Page_a_propos';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titre: Attribute.Text;
+    premier_texte: Attribute.Text;
+    deuxieme_texte: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-a-propo.page-a-propo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-a-propo.page-a-propo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPageContactPageContact extends Schema.CollectionType {
+  collectionName: 'page_contacts';
+  info: {
+    singularName: 'page-contact';
+    pluralName: 'page-contacts';
+    displayName: 'Page contact';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titre: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-contact.page-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-contact.page-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPagePrincipalePagePrincipale extends Schema.CollectionType {
   collectionName: 'page_principales';
   info: {
@@ -919,8 +1014,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::couleur.couleur': ApiCouleurCouleur;
       'api::footer.footer': ApiFooterFooter;
       'api::navbar.navbar': ApiNavbarNavbar;
+      'api::page-a-propo.page-a-propo': ApiPageAPropoPageAPropo;
+      'api::page-contact.page-contact': ApiPageContactPageContact;
       'api::page-principale.page-principale': ApiPagePrincipalePagePrincipale;
     }
   }

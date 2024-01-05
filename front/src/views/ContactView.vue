@@ -80,19 +80,17 @@
         />
         <img
           src="https://cdn.group.renault.com/ren/fr/home/austral/austral_carrousel_mobile_2560x4551.jpg.ximg.xsmall.jpg/0c1cc21218.jpg"
-          :alt="contact.hero.alt"
           class="PictureElement__imgDefault"
           fetchpriority="high"
         /><noscript
           ><img
             src="https://cdn.group.renault.com/ren/fr/home/austral/austral_carrousel_mobile_2560x4551.jpg.ximg.xsmall.jpg/0c1cc21218.jpg"
-            :alt="contact.hero.alt"
         /></noscript>
       </picture>
     </article>
     <article class="content">
-      <h1>{{ contact.content.h1 }}</h1>
-      <form id="form">
+      <h1>{{ contact.titre }}</h1>
+      <!-- <form id="form">
         <label for="name">Nom</label>
         <input type="text" name="name" id="name" />
         <label for="mail">E-mail</label>
@@ -124,6 +122,22 @@
         <label for="message">Message</label>
         <textarea name="message" id="message"></textarea>
         <button>Envoyer</button>
+      </form> -->
+      <form id="form" @submit.prevent="getFormValues()">
+        <h2>Formulaire de contact</h2>
+        <input type="text" ref="name" placeholder="Votre nom" />
+        <input type="text" ref="email" placeholder="Votre e-mail" />
+        <input type="text" ref="subject" placeholder="Sujet" />
+        <input type="text" ref="message" placeholder="Votre message" />
+        <select name="reason" id="reason" v-model="selectedOption">
+          <option value="0" disabled selected>Choisissez une raison</option>
+          <option value="vn">VÉHICULE NEUF</option>
+          <option value="vo">VÉHICULE D'OCCASION</option>
+          <option value="carrosserie">CARROSSERIE</option>
+          <option value="sp">SERVICE DE PROXIMITE</option>
+        </select>
+        <!-- <button type="submit" @click.prevent="getFormValues()">Envoyer</button> -->
+        <button type="submit">Envoyer</button>
       </form>
     </article>
   </main>
@@ -134,16 +148,27 @@ import { Options, Vue } from "vue-class-component";
 import contact from "../variables/contact.config";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import axios from "axios";
 gsap.registerPlugin(ScrollTrigger);
 
 @Options({
   data() {
     return {
       selectedOption: "",
-      contact: contact,
+      // contact: contact,
+      contact: "",
     };
   },
   mounted() {
+    axios
+      .get("http://localhost:1338/api/page-contacts/1?populate=*")
+      .then((response) => {
+        this.contact = response.data.data.attributes;
+        console.log("ttt", this.contact);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     gsap.from(".hero", {
       scrollTrigger: ".hero",
       opacity: 0,
@@ -163,9 +188,128 @@ gsap.registerPlugin(ScrollTrigger);
       ease: "slow",
     });
   },
+  methods: {
+    // async getFormValues() {
+    //   this.output = {
+    //     name: this.$refs.name.value,
+    //     to: this.$refs.email.value,
+    //     subject: this.$refs.subject.value,
+    //     text:
+    //       "Vous avez reçu une nouvelle demande de contact." +
+    //       "\n" +
+    //       "Mr/Mme" +
+    //       " " +
+    //       this.$refs.name.value +
+    //       " " +
+    //       "vous a envoyé une demande depuis le formulaire de contact du site." +
+    //       "\n" +
+    //       "Nom : " +
+    //       this.$refs.name.value +
+    //       "," +
+    //       "\n" +
+    //       "Email : " +
+    //       this.$refs.email.value +
+    //       "," +
+    //       "\n" +
+    //       "Sujet : " +
+    //       this.$refs.subject.value +
+    //       "," +
+    //       "\n" +
+    //       "Message : " +
+    //       this.$refs.message.value +
+    //       "," +
+    //       "\n" +
+    //       "Raison : " +
+    //       this.selectedOption +
+    //       "," +
+    //       "\n" +
+    //       "Cordialement,",
+    //     html:
+    //       "<h4>" +
+    //       "Vous avez reçu une nouvelle demande de contact." +
+    //       "</h4>" +
+    //       "<br>" +
+    //       "</br>" +
+    //       "<p>" +
+    //       "Mr/Mme" +
+    //       " " +
+    //       this.$refs.name.value +
+    //       " " +
+    //       "vous a envoyé une demande depuis le formulaire de contact du site." +
+    //       "</p>" +
+    //       "<br>" +
+    //       "</br>" +
+    //       "<b>" +
+    //       "Nom : " +
+    //       "</b>" +
+    //       this.$refs.name.value +
+    //       "," +
+    //       "<br>" +
+    //       "</br>" +
+    //       "<b>" +
+    //       "Email : " +
+    //       "</b>" +
+    //       this.$refs.email.value +
+    //       "," +
+    //       "<br>" +
+    //       "</br>" +
+    //       "<b>" +
+    //       "Sujet : " +
+    //       "</b>" +
+    //       this.$refs.subject.value +
+    //       "," +
+    //       "<br>" +
+    //       "</br>" +
+    //       "<b>" +
+    //       "Message : " +
+    //       "</b>" +
+    //       this.$refs.message.value +
+    //       "," +
+    //       "<br>" +
+    //       "</br>" +
+    //       "<b>" +
+    //       "Raison : " +
+    //       "</b>" +
+    //       this.selectedOption +
+    //       "," +
+    //       "<br>" +
+    //       "</br>" +
+    //       "<p>" +
+    //       "Cordialement," +
+    //       "</p>",
+    //   };
+    //   console.log("output : ", this.output);
+    //   try {
+    //     if (this.selectedOption === "vn") {
+    //       console.log(
+    //         "La valeur de l'option choisie est : " +
+    //           this.selectedOption +
+    //           " et l'id du vehicule est " +
+    //           this.id_vehicles
+    //       );
+    //     } else {
+    //       // axios
+    //       //   .post("http://localhost:1337/api/email/", this.output)
+    //       //   .then((response) => {
+    //       //     this.$router.go(this.$router.currentRoute);
+    //       //     console.log("data :", response.config.data);
+    //       //   })
+    //       //   .catch((error) => {
+    //       //     console.error("error : ", error);
+    //       //   });
+    //     }
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // },
+  },
 })
 export default class ContactView extends Vue {
-  contact = contact;
+  getFormValues() {
+    console.log("je suis une fonctioon");
+  }
+  // contact = contact;
+  contact!: any;
   selectedOption!: string;
 }
 </script>

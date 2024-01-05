@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "couleurs",
+  "info": {
+    "singularName": "couleur",
+    "pluralName": "couleurs",
+    "displayName": "Couleur"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "couleur_principale": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "couleur_secondaire": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    }
+  }
+}

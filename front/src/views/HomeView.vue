@@ -406,6 +406,18 @@ gsap.registerPlugin(ScrollTrigger);
       .catch((error) => {
         console.log(error);
       });
+    // axios
+    //   .get("http://localhost:1337/api/couleurs/1")
+    //   .then((response) => {
+    //     this.color = response.data.data.attributes;
+    //     this.primaryColor = this.color.couleur_principale;
+    //     this.secondaryColor = this.color.couleur_secondaire;
+    //     this.textColor = this.color.couleur_texte;
+    //     this.backgroundColor = this.color.couleur_arriere_plan;
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
     gsap.from(".hero", {
       scrollTrigger: ".hero",
       opacity: 0,

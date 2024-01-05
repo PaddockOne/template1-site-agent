@@ -80,20 +80,19 @@
         />
         <img
           src="https://cdn.group.renault.com/ren/fr/home/austral/austral_carrousel_mobile_2560x4551.jpg.ximg.xsmall.jpg/0c1cc21218.jpg"
-          :alt="about.hero.alt"
           class="PictureElement__imgDefault"
           fetchpriority="high"
         /><noscript
           ><img
             src="https://cdn.group.renault.com/ren/fr/home/austral/austral_carrousel_mobile_2560x4551.jpg.ximg.xsmall.jpg/0c1cc21218.jpg"
-            :alt="about.hero.alt"
+            :alt=""
         /></noscript>
       </picture>
     </article>
     <article class="content">
-      <h1>{{ about.content.h1 }}</h1>
-      <p id="content_p1">{{ about.content.p_1 }}</p>
-      <p id="content_p2">{{ about.content.p_2 }}</p>
+      <h1>{{ about.titre }}</h1>
+      <p id="content_p1">{{ about.premier_texte }}</p>
+      <p id="content_p2">{{ about.deuxieme_texte }}</p>
     </article>
   </main>
 </template>
@@ -103,15 +102,26 @@ import { Options, Vue } from "vue-class-component";
 import about from "../variables/about.config";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import axios from "axios";
 gsap.registerPlugin(ScrollTrigger);
 
 @Options({
   data() {
     return {
-      about: about,
+      // about: about,
+      about: "",
     };
   },
   mounted() {
+    axios
+      .get("http://localhost:1338/api/page-a-propos/1?populate=*")
+      .then((response) => {
+        this.about = response.data.data.attributes;
+        console.log(this.about);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     gsap.from(".hero", {
       scrollTrigger: ".hero",
       opacity: 0,
@@ -140,7 +150,8 @@ gsap.registerPlugin(ScrollTrigger);
   },
 })
 export default class AboutView extends Vue {
-  about = about;
+  // about = about;
+  about!: any;
 }
 </script>
 
