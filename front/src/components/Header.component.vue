@@ -4,25 +4,27 @@
       <section id="location">
         <span
           ><h5>Adresse</h5>
-          <a :href="header.location.localisation" target="_blank">{{
-            header.location.address
+          <a :href="nav.localisation_GPS" target="_blank">{{
+            nav.adresse
           }}</a></span
         >
         <span
           ><h5>Horaires</h5>
-          <p>{{ header.location.horaire }}</p>
-          <p>{{ header.location.horaire_weekend }}</p></span
+          <p>{{ nav.horaires_semaine }}</p>
+          <p>{{ nav.horaires_weekend }}</p></span
         >
       </section>
       <section id="phone">
         <h5>Téléphone</h5>
-        <a :href="'tel:' + header.phone" target="_blank">{{ header.phone }}</a>
+        <a :href="'tel:' + nav.telephone" target="_blank">{{
+          nav.telephone
+        }}</a>
       </section>
     </section>
     <nav>
       <section class="brand">
-        <h1 id="brand___first-part">{{ header.brand.h1_1 }}</h1>
-        <h1 id="brand___second-part">{{ header.brand.h1_2 }}</h1>
+        <h1 id="brand___first-part">{{ nav.nom_garage_premier_texte_gras }}</h1>
+        <h1 id="brand___second-part">{{ nav.nom_garage_second_texte }}</h1>
       </section>
       <span
         id="burger-btn"
@@ -33,8 +35,8 @@
       <ul @click="toggleNavMenu()" :class="{ show: toggleNav }">
         <li>
           <router-link to="/" :href="'/'">
-            <span style="display: none">Accueil</span>
-            <span style="display: inline">Accueil</span>
+            <span style="display: none">{{ nav.nom_page_accueil }}</span>
+            <span style="display: inline">{{ nav.nom_page_accueil }}</span>
           </router-link>
         </li>
         <li>
@@ -42,8 +44,8 @@
             to="/a-propos-garagiste-nom-ville"
             :href="'/a-propos-garagiste-nom-ville'"
           >
-            <span style="display: none">A propos</span>
-            <span style="display: inline">A propos</span>
+            <span style="display: none">{{ nav.nom_page_a_propos }}</span>
+            <span style="display: inline">{{ nav.nom_page_a_propos }}</span>
           </router-link>
         </li>
         <li>
@@ -52,10 +54,10 @@
             :href="'/garagiste-renault-nom-ville/contact'"
           >
             <button class="btn-primary" style="display: none">
-              Contactez-nous
+              {{ nav.nom_page_contact }}
             </button>
             <button class="btn-primary" style="display: inline">
-              Contactez-nous
+              {{ nav.nom_page_contact }}
             </button>
           </router-link>
         </li>
@@ -68,10 +70,31 @@ import { Options, Vue } from "vue-class-component";
 import header from "../variables/header.config";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import axios from "axios";
 gsap.registerPlugin(ScrollTrigger);
 @Options({
   name: "Header",
+  data() {
+    return {
+      nav: "",
+      urlHome: "",
+      urlPage: "",
+      urlContact: "",
+    };
+  },
   mounted() {
+    axios
+      .get("http://localhost:1338/api/navbars/1?populate=*")
+      .then((response) => {
+        this.nav = response.data.data.attributes;
+        console.log("nav", this.nav);
+        this.urlHome = `/home/` + this.nav.lien_url_page_principale;
+        this.urlPage = `/a-propos/` + this.nav.lien_url_page;
+        this.urlContact = `/contact/` + this.nav.lien_url_contact;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     gsap.from("header", {
       scrollTrigger: "header",
       opacity: 0,
@@ -80,7 +103,8 @@ gsap.registerPlugin(ScrollTrigger);
   },
 })
 export default class Header extends Vue {
-  header = header;
+  // header = header;
+  nav: any;
   toggleNav = false;
 
   toggleNavMenu() {
