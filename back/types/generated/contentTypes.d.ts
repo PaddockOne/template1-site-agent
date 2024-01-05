@@ -392,6 +392,12 @@ export interface ApiPagePrincipalePagePrincipale extends Schema.CollectionType {
     texte_bouton_banniere: Attribute.Text;
     titre_encars_competence: Attribute.Text;
     titre_premiere_competence: Attribute.Text;
+    competences: Attribute.Media;
+    titre_encars_offre_special: Attribute.Text;
+    titre_deuxieme_banniere: Attribute.Text;
+    premier_texte_deuxieme_banniere: Attribute.Text;
+    deuxieme_texte_deuxieme_banniere: Attribute.Text;
+    texte_bouton_deuxieme_banniere: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -72,6 +72,32 @@
     },
     "titre_premiere_competence": {
       "type": "text"
+    },
+    "competences": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "titre_encars_offre_special": {
+      "type": "text"
+    },
+    "titre_deuxieme_banniere": {
+      "type": "text"
+    },
+    "premier_texte_deuxieme_banniere": {
+      "type": "text"
+    },
+    "deuxieme_texte_deuxieme_banniere": {
+      "type": "text"
+    },
+    "texte_bouton_deuxieme_banniere": {
+      "type": "text"
     }
   }
 }

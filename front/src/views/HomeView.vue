@@ -161,10 +161,10 @@
             ><span class="icon"></span>
             <span class="text">
               <h5>
-                {{ home.why_us.text.left_top.h5 }}
+                {{ first_competences.alternativeText }}
               </h5>
               <span>
-                {{ home.why_us.text.left_top.span }}
+                {{ first_competences.caption }}
               </span>
             </span>
           </span>
@@ -172,10 +172,10 @@
             ><span class="icon"></span>
             <span class="text">
               <h5>
-                {{ home.why_us.text.right_top.h5 }}
+                {{ second_competences.alternativeText }}
               </h5>
               <span>
-                {{ home.why_us.text.right_top.span }}
+                {{ second_competences.caption }}
               </span>
             </span>
           </span>
@@ -183,10 +183,10 @@
             ><span class="icon"></span>
             <span class="text">
               <h5>
-                {{ home.why_us.text.left_bottom.h5 }}
+                {{ third_competences.alternativeText }}
               </h5>
               <span>
-                {{ home.why_us.text.left_bottom.span }}
+                {{ third_competences.caption }}
               </span>
             </span>
           </span>
@@ -194,10 +194,10 @@
             ><span class="icon"></span>
             <span class="text">
               <h5>
-                {{ home.why_us.text.right_bottom.h5 }}
+                {{ fourth_competences.alternativeText }}
               </h5>
               <span>
-                {{ home.why_us.text.right_bottom.span }}
+                {{ fourth_competences.caption }}
               </span>
             </span>
           </span>
@@ -206,7 +206,7 @@
     </article>
     <article class="special-offer">
       <h2 id="special_offer_h2">
-        {{ home.special_offer.h2 }}
+        {{ data_home.titre_encars_offre_speciale }}
       </h2>
       <section class="special-offer__list">
         <img
@@ -283,17 +283,21 @@
             :alt="home.hero_model.alt" /></noscript
       ></picture>
       <span class="hero__text bottom_minus">
-        <h3 class="hero__text--first">{{ home.hero_model.h3 }}</h3>
+        <h3 class="hero__text--first">
+          {{ data_home.titre_deuxieme_banniere }}
+        </h3>
         <span class="hero__text--second">
-          <h1>{{ home.hero_model.h1_1 }}</h1>
-          <h1>{{ home.hero_model.h1_2 }}</h1>
+          <h1>{{ data_home.premier_texte_deuxieme_banniere }}</h1>
+          <h1>{{ data_home.deuxieme_texte_deuxieme_banniere }}</h1>
         </span>
-        <button class="btn-primary">{{ home.hero_model.button }}</button>
+        <button class="btn-primary">
+          {{ data_home.texte_bouton_deuxieme_banniere }}
+        </button>
         >
       </span>
     </article>
     <article class="our_vehicle">
-      <h2>{{ home.our_vehicle.h2 }}</h2>
+      <h2>Nos véhicules</h2>
       <CarouselVehicle />
       <section class="highlight">
         <div class="highlight__description">
@@ -357,6 +361,11 @@ gsap.registerPlugin(ScrollTrigger);
       link: "http://localhost:1338",
       imgPrincipale: "",
       imgBanniere: "",
+      first_competences: "",
+      first_icon_competences: "",
+      second_competences: "",
+      third_competences: "",
+      fourth_competences: "",
     };
   },
   mounted() {
@@ -368,6 +377,18 @@ gsap.registerPlugin(ScrollTrigger);
           this.link + this.data_home.image_principale.data.attributes.url;
         this.imgBanniere =
           this.link + this.data_home.image_banniere.data.attributes.url;
+        this.first_competences = this.data_home.competences.data[0].attributes;
+        this.second_competences = this.data_home.competences.data[1].attributes;
+        this.third_competences = this.data_home.competences.data[2].attributes;
+        this.fourth_competences = this.data_home.competences.data[3].attributes;
+        console.log("data_home", this.data_home);
+        console.log(
+          "data",
+          this.data_home.competences.data[0].attributes.alternativeText
+        );
+        this.first_icon_competences =
+          this.link + this.data_home.competences.data[0].attributes.url;
+        console.log("first_icon_competences", this.first_icon_competences);
       })
       .catch((error) => {
         console.log(error);
@@ -503,8 +524,13 @@ export default class HomeView extends Vue {
     energyGrade: "A",
   };
   data_home: any;
-  imgPrincipale: string | undefined;
-  imgBanniere: string | undefined;
+  imgPrincipale!: string;
+  imgBanniere!: string;
+  first_competences!: any;
+  first_icon_competences!: string;
+  second_competences!: any;
+  third_competences!: any;
+  fourth_competences!: any;
 }
 </script>
 
@@ -739,6 +765,12 @@ main {
         &:nth-child(1) > .icon:before {
           content: url("https://api.iconify.design/mdi/tools.svg?color=%23162b40&width=40&height=40");
         }
+        // &:nth-child(1) > .icon {
+        //   background-image: v-bind("first_icon_competences");
+        //   // content: url(first_icon_competences);
+        //   // width: 40;
+        //   // height: 40;
+        // }
         &:nth-child(2) > .icon:before {
           content: url("https://api.iconify.design/raphael/employee.svg?color=%23162b40&width=40&height=40");
         }
