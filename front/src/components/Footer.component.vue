@@ -2,29 +2,31 @@
   <footer>
     <section class="contact">
       <h2 id="contact_h2">Prenez rendez-vous maintenant</h2>
-      <a id="contact_a" :href="'tel:' + header.phone" target="_blank"
-        >Appellez nous au: {{ header.phone }}</a
+      <a id="contact_a" :href="'tel:' + nav.telephone" target="_blank"
+        >Appellez nous au: {{ nav.telephone }}</a
       >
     </section>
     <section class="footer">
       <span class="general">
         <section class="brand">
-          <h1 id="brand___first-part">{{ header.brand.h1_1 }}</h1>
-          <h1 id="brand___second-part">{{ header.brand.h1_2 }}</h1>
+          <h1 id="brand___first-part">
+            {{ nav.nom_garage_premier_texte_gras }}
+          </h1>
+          <h1 id="brand___second-part">{{ nav.nom_garage_second_texte }}</h1>
         </section>
-        <a :href="'tel:' + header.phone" target="_blank"
-          >Appellez nous au: {{ header.phone }}</a
+        <a :href="'tel:' + nav.telephone" target="_blank"
+          >Appellez nous au: {{ nav.telephone }}</a
         >
         <span class="hours"
           ><h5>Horaires</h5>
-          <p>{{ header.location.horaire }}</p>
-          <p>{{ header.location.horaire_weekend }}</p></span
+          <p>{{ nav.horaires_semaine }}</p>
+          <p>{{ nav.horaires_weekend }}</p></span
         >
         <span class="copyright">© 2022 TeamDevSyn</span>
       </span>
       <iframe
         class="svg"
-        :src="header.location.localisation_map"
+        :src="link_GPS"
         width="800"
         height="300"
         style="border: 0"
@@ -40,11 +42,69 @@ import header from "../variables/header.config";
 import { Options, Vue } from "vue-class-component";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import axios from "axios";
 gsap.registerPlugin(ScrollTrigger);
 
 @Options({
   name: "FooterComponent",
+  data() {
+    return {
+      nav: "",
+      link_GPS: "",
+    };
+  },
   mounted() {
+    function extractCoordinatesAndZoomFromGoogleMapsLink(link: string) {
+      const regex = /@(-?\d+\.\d+),(-?\d+\.\d+),(\d+)z/;
+      const match = link.match(regex);
+
+      if (match) {
+        const latitude = parseFloat(match[1]);
+        const longitude = parseFloat(match[2]);
+        const zoom = parseInt(match[3], 10);
+
+        return { latitude, longitude, zoom };
+      } else {
+        return null;
+      }
+    }
+    axios
+      .get("http://localhost:1338/api/navbars/1?populate=*")
+      .then((response) => {
+        this.nav = response.data.data.attributes;
+        console.log("nav", this.nav);
+        this.googleMapsLink = this.nav.localisation_GPS;
+        const coordinatesAndZoom = extractCoordinatesAndZoomFromGoogleMapsLink(
+          this.googleMapsLink
+        );
+
+        if (coordinatesAndZoom) {
+          console.log("Latitude:", coordinatesAndZoom.latitude);
+          console.log("Longitude:", coordinatesAndZoom.longitude);
+          console.log("Zoom:", coordinatesAndZoom.zoom);
+          this.link_GPS =
+            "http://maps.google.com/maps?q=" +
+            coordinatesAndZoom.latitude +
+            "," +
+            coordinatesAndZoom.longitude +
+            "&z=" +
+            coordinatesAndZoom.zoom +
+            "&output=embed";
+          this.location =
+            coordinatesAndZoom.latitude +
+            "," +
+            coordinatesAndZoom.longitude +
+            "," +
+            coordinatesAndZoom.zoom;
+        } else {
+          console.log(
+            "Le lien ne correspond pas au modèle d'URL attendu pour Google Maps."
+          );
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     gsap.from(".general", {
       scrollTrigger: "footer",
       duration: 1,
@@ -72,7 +132,8 @@ gsap.registerPlugin(ScrollTrigger);
   },
 })
 export default class Footer extends Vue {
-  header = header;
+  nav!: any;
+  link_GPS!: string;
 }
 </script>
 
