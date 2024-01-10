@@ -130,7 +130,7 @@
         <input type="text" ref="subject" placeholder="Sujet" />
         <input type="text" ref="message" placeholder="Votre message" />
         <select name="reason" id="reason" v-model="selectedOption">
-          <option value="0" disabled selected>Choisissez une raison</option>
+          <option value="default">Choisissez une raison</option>
           <option value="vn">VÉHICULE NEUF</option>
           <option value="vo">VÉHICULE D'OCCASION</option>
           <option value="carrosserie">CARROSSERIE</option>
@@ -157,9 +157,12 @@ gsap.registerPlugin(ScrollTrigger);
       selectedOption: "",
       // contact: contact,
       contact: "",
+      id_vehicles: "",
     };
   },
   mounted() {
+    this.selectedOption = this.$route.params.promotion || "default";
+    this.id_vehicles = this.$route.params.id_vehicles || "";
     axios
       .get("http://localhost:1338/api/page-contacts/1?populate=*")
       .then((response) => {
@@ -366,7 +369,8 @@ button {
     }
     input,
     textarea,
-    select {
+    select,
+    option {
       height: 15%;
       border: none;
       border-bottom: 1px solid $secondary;

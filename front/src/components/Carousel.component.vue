@@ -14,7 +14,24 @@
           <p v-if="vehicle.aside_carousel_site_agency" class="bonus">
             bonus éco de {{ vehicle.aside_carousel_site_agency }}€ non déduit
           </p>
-          <button class="btn-primary">Contactez-nous</button>
+          <!-- <button class="btn-primary">Contactez-nous</button> -->
+          <RouterLink
+            style="text-decoration: none"
+            id="contact"
+            @click="toggleMenu()"
+            :to="{
+              name: 'contact',
+              params: { promotion: 'vn', id_vehicles: vehicle.id_vehicles },
+            }"
+            href="/contact"
+          >
+            <button class="btn-primary" style="display: none">
+              Contactez-nous
+            </button>
+            <button class="btn-primary" style="display: inline">
+              Contactez-nous
+            </button>
+          </RouterLink>
         </div>
       </div>
     </slide>

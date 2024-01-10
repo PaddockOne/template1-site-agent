@@ -49,10 +49,7 @@
           </router-link>
         </li>
         <li>
-          <router-link
-            to="/garagiste-renault-nom-ville/contact"
-            :href="'/garagiste-renault-nom-ville/contact'"
-          >
+          <router-link to="/contact" :href="'/contact'">
             <button class="btn-primary" style="display: none">
               {{ nav.nom_page_contact }}
             </button>

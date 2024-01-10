@@ -13,7 +13,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/AboutView.vue"),
   },
   {
-    path: "/garagiste-renault-nom-ville/contact",
+    path: "/contact/:id_vehicles?/:promotion?",
     name: "contact",
     component: () => import("../views/ContactView.vue"),
   },
