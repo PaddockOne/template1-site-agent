@@ -110,6 +110,7 @@ gsap.registerPlugin(ScrollTrigger);
     return {
       // about: about,
       about: "",
+      color: "",
     };
   },
   mounted() {
@@ -121,6 +122,30 @@ gsap.registerPlugin(ScrollTrigger);
       })
       .catch((error) => {
         console.log(error);
+      });
+    axios
+      .get("http://localhost:1338/api/couleurs/1")
+      .then((response) => {
+        this.color = response.data.data.attributes;
+        this.$el.style.setProperty(
+          "--primary-color",
+          this.color.couleur_principale
+        );
+        this.$el.style.setProperty(
+          "--secondary-color",
+          this.color.couleur_secondaire
+        );
+        this.$el.style.setProperty(
+          "--primary-background",
+          this.color.couleur_arriere_plan_principale
+        );
+        this.$el.style.setProperty(
+          "--secondary-background",
+          this.color.couleur_arriere_plan_secondaire
+        );
+      })
+      .catch((error) => {
+        console.log("erreur", error);
       });
     gsap.from(".hero", {
       scrollTrigger: ".hero",
@@ -152,6 +177,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default class AboutView extends Vue {
   // about = about;
   about!: any;
+  color!: any;
 }
 </script>
 
@@ -177,12 +203,12 @@ main::-webkit-scrollbar {
   h1 {
     font-size: 3em;
     font-family: "Oswald", sans-serif;
-    color: $secondary;
+    color: var(--secondary-color);
   }
   p {
     font-size: 1em;
     font-family: "Open Sans", sans-serif;
-    color: $secondary;
+    color: var(--secondary-color);
     align-self: flex-start;
     width: 50%;
     position: relative;

@@ -774,6 +774,7 @@ export interface ApiCouleurCouleur extends Schema.CollectionType {
     singularName: 'couleur';
     pluralName: 'couleurs';
     displayName: 'Couleur';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -782,6 +783,10 @@ export interface ApiCouleurCouleur extends Schema.CollectionType {
     couleur_principale: Attribute.String &
       Attribute.CustomField<'plugin::color-picker.color'>;
     couleur_secondaire: Attribute.String &
+      Attribute.CustomField<'plugin::color-picker.color'>;
+    couleur_arriere_plan_principale: Attribute.String &
+      Attribute.CustomField<'plugin::color-picker.color'>;
+    couleur_arriere_plan_secondaire: Attribute.String &
       Attribute.CustomField<'plugin::color-picker.color'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

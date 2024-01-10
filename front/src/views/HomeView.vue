@@ -88,6 +88,7 @@
         /></noscript>
       </picture>
       <span class="hero__text">
+        <!-- <h3 class="hero__text--first" :style="{ color: primaryColor }"> -->
         <h3 class="hero__text--first">
           {{ data_home.premiere_partie_du_titre }}
         </h3>
@@ -366,6 +367,7 @@ gsap.registerPlugin(ScrollTrigger);
       second_competences: "",
       third_competences: "",
       fourth_competences: "",
+      color: "",
     };
   },
   mounted() {
@@ -406,18 +408,30 @@ gsap.registerPlugin(ScrollTrigger);
       .catch((error) => {
         console.log(error);
       });
-    // axios
-    //   .get("http://localhost:1337/api/couleurs/1")
-    //   .then((response) => {
-    //     this.color = response.data.data.attributes;
-    //     this.primaryColor = this.color.couleur_principale;
-    //     this.secondaryColor = this.color.couleur_secondaire;
-    //     this.textColor = this.color.couleur_texte;
-    //     this.backgroundColor = this.color.couleur_arriere_plan;
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    axios
+      .get("http://localhost:1338/api/couleurs/1")
+      .then((response) => {
+        this.color = response.data.data.attributes;
+        this.$el.style.setProperty(
+          "--primary-color",
+          this.color.couleur_principale
+        );
+        this.$el.style.setProperty(
+          "--secondary-color",
+          this.color.couleur_secondaire
+        );
+        this.$el.style.setProperty(
+          "--primary-background",
+          this.color.couleur_arriere_plan_principale
+        );
+        this.$el.style.setProperty(
+          "--secondary-background",
+          this.color.couleur_arriere_plan_secondaire
+        );
+      })
+      .catch((error) => {
+        console.log("erreur", error);
+      });
     gsap.from(".hero", {
       scrollTrigger: ".hero",
       opacity: 0,
@@ -543,6 +557,7 @@ export default class HomeView extends Vue {
   second_competences!: any;
   third_competences!: any;
   fourth_competences!: any;
+  color!: any;
 }
 </script>
 
@@ -593,7 +608,7 @@ main {
     left: 2.5%;
     &--first {
       font-family: "Oswald", sans-serif;
-      color: $primary;
+      color: var(--primary-color);
       font-weight: 600;
       font-size: 1.5rem;
       margin: 0;
@@ -606,7 +621,7 @@ main {
       flex-direction: column;
       h1 {
         font-family: "Oswald", sans-serif;
-        color: $background_primary;
+        color: var(--primary-background);
         font-size: 2.5rem;
         margin: 0;
         line-height: 1em;
@@ -648,7 +663,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $background_primary;
+    background-color: var(--primary-background);
     padding: 2em 3em;
     overflow: visible;
     border-radius: 0.25em;
@@ -692,7 +707,7 @@ main {
         h3 {
           font-family: "Oswald", sans-serif;
           margin: 0;
-          color: $secondary;
+          color: var(--secondary-color);
           white-space: nowrap;
         }
         .hero__modal__text--italic {
@@ -719,7 +734,7 @@ main {
   justify-content: center;
   padding: 10em 10px 2em 10px;
   gap: 10em;
-  background: $background_secondary;
+  background: var(--secondary-background);
   &__img {
     display: flex;
     flex-direction: column;
@@ -746,7 +761,7 @@ main {
     }
     h2 {
       font-family: "Oswald", sans-serif;
-      color: $secondary;
+      color: var(--secondary-color);
       font-size: 2.5rem;
       font-weight: 500;
       padding: 0 0 1em 0;
@@ -795,7 +810,7 @@ main {
         .icon {
           min-width: 75px;
           height: 65px;
-          background-color: $primary;
+          background-color: var(--primary-color);
           display: block;
           clip-path: polygon(
             25% 0%,
@@ -824,7 +839,7 @@ main {
         .text {
           h5 {
             font-family: "Oswald", sans-serif;
-            color: $secondary;
+            color: var(--secondary-color);
             font-size: 1.25rem;
             margin: 0;
           }
@@ -854,7 +869,7 @@ main {
   }
   h2 {
     font-family: "Oswald", sans-serif;
-    color: $secondary;
+    color: var(--secondary-color);
     font-size: 2.5rem;
     font-weight: 500;
     margin: 0;
@@ -883,7 +898,7 @@ main {
 }
 .our_vehicle {
   width: 100%;
-  background: $background_secondary;
+  background: var(--secondary-background);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -891,7 +906,7 @@ main {
   padding: 2em 10px 2em 10px;
   h2 {
     font-family: "Oswald", sans-serif;
-    color: $secondary;
+    color: var(--secondary-color);
     font-size: 2.5rem;
     font-weight: 500;
     margin: 0;
@@ -942,7 +957,7 @@ main {
       }
       .bonus {
         font-family: "Dosis", sans-serif;
-        color: $background_primary;
+        color: var(--primary-background);
         font-size: 1em;
         background: #72c293;
         padding: 0.1em 0.25em;
@@ -966,7 +981,7 @@ main {
           height: 1em;
           padding: 0.1em 0.25em;
           background: #289548;
-          color: $background_primary;
+          color: var(--primary-background);
           display: flex;
           justify-content: flex-start;
           align-items: center;
@@ -975,7 +990,7 @@ main {
       }
       h4 {
         font-family: "Oswald", sans-serif;
-        color: $secondary;
+        color: var(--secondary-color);
         font-size: 1.5rem;
         font-weight: 500;
         margin: 0;

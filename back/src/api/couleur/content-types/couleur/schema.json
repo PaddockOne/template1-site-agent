@@ -4,7 +4,8 @@
   "info": {
     "singularName": "couleur",
     "pluralName": "couleurs",
-    "displayName": "Couleur"
+    "displayName": "Couleur",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,6 +18,16 @@
       "customField": "plugin::color-picker.color"
     },
     "couleur_secondaire": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "couleur_arriere_plan_principale": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "couleur_arriere_plan_secondaire": {
       "type": "customField",
       "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
       "customField": "plugin::color-picker.color"
